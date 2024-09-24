@@ -195,7 +195,6 @@ img {
 .home__title {
   font-size: 50px;
   margin-bottom: var(--mb-5);
-  height: 250px;
 }
 .home__title-color {
   color: var(--first-color);
@@ -427,7 +426,7 @@ img {
   }
 }
 
-@media screen and (max-width: 760px) and (min-width: 360px) {
+@media screen and (max-width: 760px) and (min-width: 320px) {
   .services__container {
     grid-template-columns: repeat(1, 1fr) !important;
     justify-content: center;
@@ -441,6 +440,7 @@ img {
   }
   .home__title {
     font-size: 28px;
+    height: 130px;
   }
   .mobile_qualification__data {
     display: block !important;
