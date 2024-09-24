@@ -310,7 +310,7 @@ const App = () => {
 
         {/*===== SKILLS =====*/}
         <section className="skills section" id="skills">
-          <h2 className="section-title">Skills</h2>
+          <h2 className="section-title">Known Tech Stack</h2>
           <div className="skills__container bd-grid">
             <div style={{ display: "contents" }}>
               {/* Skills data array */}
@@ -386,12 +386,12 @@ const App = () => {
                   </div>
                   <div
                     className={`skills__bar`}
-                    style={{ width: `${skill.percentage}` }}
+                    style={{ width: "100%" }}
                   ></div>
                   <div>
-                    <span className="skills__percentage">
+                    {/* <span className="skills__percentage">
                       {skill.percentage}
-                    </span>
+                    </span> */}
                   </div>
                 </div>
               ))}
