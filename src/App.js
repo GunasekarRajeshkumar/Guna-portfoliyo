@@ -11,7 +11,6 @@ import work5 from "./img/work5.png";
 import work6 from "./img/work6.png";
 import work7 from "./img/work7.png";
 
-import Typical from "react-typical";
 import emailjs from "@emailjs/browser";
 
 const App = () => {
@@ -112,6 +111,37 @@ const App = () => {
       );
   };
 
+  const [text, setText] = useState("");
+  const [index, setIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loop, setLoop] = useState(0);
+
+  const texts = ["Front End Developer", "Web Developer"];
+  const typingSpeed = isDeleting ? 100 : 150;
+  const pauseTime = 1000; // Time before starting next text
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const currentText = texts[loop % texts.length];
+      const updatedText = isDeleting
+        ? currentText.substring(0, index - 1)
+        : currentText.substring(0, index + 1);
+
+      setText(updatedText);
+      setIndex(isDeleting ? index - 1 : index + 1);
+
+      if (!isDeleting && updatedText === currentText) {
+        setTimeout(() => setIsDeleting(true), pauseTime); // Start deleting after a pause
+      } else if (isDeleting && updatedText === "") {
+        setIsDeleting(false);
+        setLoop(loop + 1);
+      }
+    };
+
+    const typingTimeout = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(typingTimeout);
+  }, [text, index, isDeleting, loop]);
+
   return (
     <div>
       {/*===== HEADER =====*/}
@@ -175,12 +205,8 @@ const App = () => {
               Hi,
               <br />
               I'm <span className="home__title-color">Guna</span>
-              <br />{" "}
-              <Typical
-                steps={["Web Developer", 3000, "Front-End Developer", 4000]}
-                loop={Infinity}
-                wrapper="p"
-              />
+              <br />
+              <span>{text}</span>
             </h1>
             <a
               href="https://drive.google.com/file/d/1NnPvAZvYrtgfSIqnhWErk4qinhOlbN7i/view?usp=sharing"
