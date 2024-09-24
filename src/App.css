@@ -195,6 +195,7 @@ img {
 .home__title {
   font-size: 50px;
   margin-bottom: var(--mb-5);
+  height: 250px;
 }
 .home__title-color {
   color: var(--first-color);
