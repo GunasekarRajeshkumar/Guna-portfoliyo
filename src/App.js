@@ -85,9 +85,198 @@ const App = () => {
   };
 
   const form = useRef();
+  
+  // Progressive validation state
+  const [currentValidationField, setCurrentValidationField] = useState(null);
+  const [hasTriedSubmit, setHasTriedSubmit] = useState(false);
+  const [validatedFields, setValidatedFields] = useState(new Set());
+  const [formErrors, setFormErrors] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  // Field order for progressive validation
+  const fieldOrder = ['name', 'email', 'phone', 'message'];
+
+  // Validation functions
+  const validateField = (fieldName, value) => {
+    switch (fieldName) {
+      case 'name':
+        if (!value || value.trim() === '') {
+          return '*Full Name is Required';
+        }
+        if (!/^[a-zA-Z_ ]+$/.test(value)) {
+          return 'Invalid User Name';
+        }
+        return null;
+      
+      case 'email':
+        if (!value || value.trim() === '') {
+          return '*Email is Required';
+        }
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+          return 'Invalid email address';
+        }
+        return null;
+      
+      case 'phone':
+        if (!value || value.trim() === '') {
+          return '*Phone number is required';
+        }
+        if (!/^[\+]?[0-9\s\-\(\)]+$/.test(value)) {
+          return 'Invalid phone number format';
+        }
+        return null;
+      
+      case 'message':
+        if (!value || value.trim() === '') {
+          return '*Message is required';
+        }
+        if (value.trim().length < 10) {
+          return 'Message must be at least 10 characters long';
+        }
+        return null;
+      
+      default:
+        return null;
+    }
+  };
+
+  const checkAllRequiredFieldsEmpty = () => {
+    const formData = new FormData(form.current);
+    const requiredFields = ['name', 'email', 'phone', 'message'];
+    
+    return requiredFields.every(field => {
+      const value = formData.get(field);
+      return !value || value.toString().trim() === '';
+    });
+  };
+
+  const validateForm = () => {
+    const formData = new FormData(form.current);
+    const newErrors = {};
+    let isValid = true;
+
+    fieldOrder.forEach(fieldName => {
+      const value = formData.get(fieldName);
+      const error = validateField(fieldName, value?.toString() || '');
+      if (error) {
+        newErrors[fieldName] = error;
+        isValid = false;
+      }
+    });
+
+    setFormErrors(newErrors);
+    setIsFormValid(isValid);
+    return isValid;
+  };
+
+  const handleFieldChange = (fieldName, value) => {
+    // If we haven't tried to submit yet, don't show any errors
+    if (!hasTriedSubmit) {
+      return;
+    }
+
+    // If this field has an error and user is typing, validate it
+    if (formErrors[fieldName]) {
+      const error = validateField(fieldName, value);
+      
+      if (!error) {
+        // Field is now valid, remove its error and move to next field
+        const newErrors = { ...formErrors };
+        delete newErrors[fieldName];
+        setFormErrors(newErrors);
+        
+        // Add this field to validated fields
+        const newValidatedFields = new Set(validatedFields);
+        newValidatedFields.add(fieldName);
+        setValidatedFields(newValidatedFields);
+        
+        // Find next invalid field in sequence
+        const currentIndex = fieldOrder.indexOf(fieldName);
+        for (let i = currentIndex + 1; i < fieldOrder.length; i++) {
+          const nextField = fieldOrder[i];
+          const nextValue = form.current.elements[nextField]?.value || '';
+          const nextError = validateField(nextField, nextValue);
+          
+          if (nextError) {
+            setCurrentValidationField(nextField);
+            setFormErrors(prev => ({ ...prev, [nextField]: nextError }));
+            break;
+          }
+        }
+        
+        // If no more errors, clear current validation field
+        if (currentIndex === fieldOrder.length - 1 || Object.keys(newErrors).length === 0) {
+          setCurrentValidationField(null);
+        }
+      } else {
+        // Field still has error, update it
+        setFormErrors(prev => ({ ...prev, [fieldName]: error }));
+      }
+    }
+    
+    // Check if form is now valid
+    setTimeout(() => {
+      const formData = new FormData(form.current);
+      let allValid = true;
+      
+      fieldOrder.forEach(field => {
+        const value = formData.get(field);
+        const error = validateField(field, value?.toString() || '');
+        if (error) {
+          allValid = false;
+        }
+      });
+      
+      setIsFormValid(allValid);
+    }, 0);
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setHasTriedSubmit(true);
+
+    // Check if all required fields are empty
+    if (checkAllRequiredFieldsEmpty()) {
+      setFormErrors({ general: 'Required: All required fields must be filled' });
+      setCurrentValidationField(null);
+      return;
+    }
+
+    // Clear general error if it exists
+    if (formErrors.general) {
+      setFormErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.general;
+        return newErrors;
+      });
+    }
+
+    // Validate form progressively
+    const formData = new FormData(form.current);
+    let firstErrorField = null;
+    const newErrors = {};
+
+    // Find first field with error
+    for (const fieldName of fieldOrder) {
+      const value = formData.get(fieldName);
+      const error = validateField(fieldName, value?.toString() || '');
+      
+      if (error && !firstErrorField) {
+        firstErrorField = fieldName;
+        newErrors[fieldName] = error;
+        break; // Only show first error
+      }
+    }
+
+    if (firstErrorField) {
+      setFormErrors(newErrors);
+      setCurrentValidationField(firstErrorField);
+      return;
+    }
+
+    // If no errors, proceed with submission
+    setFormErrors({});
+    setCurrentValidationField(null);
 
     emailjs
       .sendForm(
@@ -101,6 +290,12 @@ const App = () => {
           console.log("SUCCESS!");
           alert("Message sent successfully! We will get back to you soon.");
           form.current.reset(); // Reset form after successful submission
+          // Reset validation state
+          setHasTriedSubmit(false);
+          setCurrentValidationField(null);
+          setValidatedFields(new Set());
+          setFormErrors({});
+          setIsFormValid(false);
         },
         (error) => {
           console.error("FAILED...", error.text);
@@ -856,25 +1051,69 @@ const App = () => {
               ref={form}
               onSubmit={sendEmail}
             >
+              {/* General Error Message */}
+              {formErrors.general && (
+                <div className="contact__error-message" style={{
+                  color: '#ff6b6b',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  marginBottom: '1rem',
+                  padding: '0.5rem',
+                  backgroundColor: '#ffe6e6',
+                  border: '1px solid #ffcdd2',
+                  borderRadius: '4px'
+                }}>
+                  {formErrors.general}
+                </div>
+              )}
+
               <div className="contact__inputs grid">
                 <div className="contact__content">
                   <label className="contact__label">Name</label>
                   <input
                     type="text"
-                    className="contact__input"
+                    className={`contact__input ${formErrors.name ? 'contact__input--error' : ''}`}
                     name="name"
                     required
+                    onChange={(e) => handleFieldChange('name', e.target.value)}
+                    style={{
+                      borderColor: formErrors.name ? '#ff6b6b' : undefined
+                    }}
                   />
+                  {formErrors.name && (
+                    <span className="contact__error" style={{
+                      color: '#ff6b6b',
+                      fontSize: '12px',
+                      marginTop: '4px',
+                      display: 'block'
+                    }}>
+                      {formErrors.name}
+                    </span>
+                  )}
                 </div>
 
                 <div className="contact__content">
                   <label className="contact__label">E-mail</label>
                   <input
                     type="email"
-                    className="contact__input"
+                    className={`contact__input ${formErrors.email ? 'contact__input--error' : ''}`}
                     name="email"
                     required
+                    onChange={(e) => handleFieldChange('email', e.target.value)}
+                    style={{
+                      borderColor: formErrors.email ? '#ff6b6b' : undefined
+                    }}
                   />
+                  {formErrors.email && (
+                    <span className="contact__error" style={{
+                      color: '#ff6b6b',
+                      fontSize: '12px',
+                      marginTop: '4px',
+                      display: 'block'
+                    }}>
+                      {formErrors.email}
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -882,23 +1121,59 @@ const App = () => {
                 <label className="contact__label">Phone number</label>
                 <input
                   type="text"
-                  className="contact__input"
+                  className={`contact__input ${formErrors.phone ? 'contact__input--error' : ''}`}
                   name="phone"
                   required
+                  onChange={(e) => handleFieldChange('phone', e.target.value)}
+                  style={{
+                    borderColor: formErrors.phone ? '#ff6b6b' : undefined
+                  }}
                 />
+                {formErrors.phone && (
+                  <span className="contact__error" style={{
+                    color: '#ff6b6b',
+                    fontSize: '12px',
+                    marginTop: '4px',
+                    display: 'block'
+                  }}>
+                    {formErrors.phone}
+                  </span>
+                )}
               </div>
 
               <div className="contact__content">
                 <label className="contact__label">Description</label>
                 <textarea
-                  className="contact__input"
+                  className={`contact__input ${formErrors.message ? 'contact__input--error' : ''}`}
                   name="message"
                   rows="7"
                   required
+                  onChange={(e) => handleFieldChange('message', e.target.value)}
+                  style={{
+                    borderColor: formErrors.message ? '#ff6b6b' : undefined
+                  }}
                 ></textarea>
+                {formErrors.message && (
+                  <span className="contact__error" style={{
+                    color: '#ff6b6b',
+                    fontSize: '12px',
+                    marginTop: '4px',
+                    display: 'block'
+                  }}>
+                    {formErrors.message}
+                  </span>
+                )}
               </div>
 
-              <button type="submit" className="button button--flex">
+              <button 
+                type="submit" 
+                className="button button--flex"
+                disabled={hasTriedSubmit && !isFormValid}
+                style={{
+                  opacity: (hasTriedSubmit && !isFormValid) ? 0.6 : 1,
+                  cursor: (hasTriedSubmit && !isFormValid) ? 'not-allowed' : 'pointer'
+                }}
+              >
                 Send message
                 <i className="uil uil-message button__icon"></i>
               </button>
