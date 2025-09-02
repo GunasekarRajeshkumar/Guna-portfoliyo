@@ -924,6 +924,32 @@ img {
   gap: 20px;
 }
 
+/* Progressive validation error styles */
+.contact__input--error {
+  border: 2px solid #ff6b6b !important;
+  background-color: #fff5f5 !important;
+}
+
+.contact__error {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+  font-weight: 500;
+}
+
+.contact__error-message {
+  color: #ff6b6b;
+  fontSize: 14px;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background-color: #ffe6e6;
+  border: 1px solid #ffcdd2;
+  border-radius: 4px;
+  text-align: center;
+}
+
 /*==================== FOOTER ====================*/
 .footer {
   padding-top: 2rem;
