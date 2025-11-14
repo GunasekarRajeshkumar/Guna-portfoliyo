@@ -24,7 +24,7 @@ const App = () => {
     });
 
     sr.reveal(
-      ".home__data, .about__img, .skills__subtitle, .skills__text ,.services ",
+      ".home__data, .about__img, .skills__subtitle, .skills__text ",
       {}
     );
     sr.reveal(
@@ -71,18 +71,6 @@ const App = () => {
       window.removeEventListener("scroll", scrollActive);
     };
   }, []);
-
-  const [activeModal, setActiveModal] = useState(null);
-
-  // Function to open the modal
-  const openModal = (index) => {
-    setActiveModal(index);
-  };
-
-  // Function to close the modal
-  const closeModal = () => {
-    setActiveModal(null);
-  };
 
   const form = useRef();
 
@@ -177,11 +165,6 @@ const App = () => {
               <li className="nav__item">
                 <a href="#experiance" className="nav__link">
                   Experiance
-                </a>
-              </li>
-              <li className="nav__item">
-                <a href="#services" className="nav__link">
-                  Services
                 </a>
               </li>
               <li className="nav__item">
@@ -379,7 +362,7 @@ const App = () => {
                   <div className="qualification__data_Left">
                     <h3 class="qualification__title">Digital Regenesys </h3>
                     <span class="qualification__subtitle">
-                      Web Developer (2023)
+                      Software Developer (2023)
                     </span>
                     <div class="qualification__calendar passage">
                       <i class="uil uil-calendar-alt"></i>I currently work as a
@@ -441,234 +424,53 @@ const App = () => {
           </div>
         </section>
 
-        {/* <!--==================== SERVICES ====================--> */}
-        <section className="services section" id="services">
-          <h2 className="section-title">Services</h2>
-          <div className="services__container bd-grid">
-            {/* Service 2 */}
-            <div className="services__content">
-              <div>
-                <i class="bx bx-code-alt  skills__icon"></i>{" "}
-                <h3 className="services__title">
-                  Software<br></br> Development
-                </h3>
-              </div>
-              <span
-                className="button button--flex button--small button--link services__button"
-                onClick={() => openModal(2)}
-              >
-                View more
-                <i className="uil uil-arrow-right button__icon"></i>
-              </span>
-
-              {/* Modal for Service 2 */}
-              {activeModal === 2 && (
-                <div className="services__modal active-modal">
-                  <div className="services__modal-content">
-                    <h4 className="services__modal-title">Development</h4>
-                    <i
-                      class="bx bxs-x-square  services__modal-close"
-                      onClick={closeModal}
-                    ></i>
-                    <ul className="services__modal-services grid">
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          I have experience working with React.js and Next.js
-                          for front-end development.
-                        </p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          I am proficient in full-stack web development and can
-                          manage all tasks efficiently, ensuring timely
-                          delivery.
-                        </p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          I have hands-on experience in digital marketing tasks,
-                          including SEO, crawling, Google bot optimization, and
-                          using tools like Google Tag Manager (GTM).
-                        </p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          I possess a foundational understanding of databases,
-                          cloud technologies, deployments, and working on MERN
-                          stack projects.
-                        </p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </div>
-            {/* Service 1 */}
-            <div className="services__content">
-              <div>
-                <i class="bx bx-code-curly skills__icon"></i>
-                <h3 className="services__title">
-                  Revamp <br></br> Full Websites
-                </h3>
-              </div>
-              <span
-                className="button button--flex button--small button--link services__button"
-                onClick={() => openModal(1)}
-              >
-                View more
-                <i className="uil uil-arrow-right button__icon"></i>
-              </span>
-
-              {/* Modal for Service 1 */}
-              {activeModal === 1 && (
-                <div className="services__modal active-modal">
-                  <div className="services__modal-content">
-                    <h4 className="services__modal-title">Revamps</h4>
-                    <i
-                      class="bx bxs-x-square  services__modal-close"
-                      onClick={closeModal}
-                    ></i>
-                    <ul className="services__modal-services grid">
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>Revamp entire websites.</p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          I have extensive experience in redesigning and
-                          revamping projects.
-                        </p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>I accurately recreate the UI during development.</p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>Ensure the code is clean and well-structured.</p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>Improve best practices and optimize performance.</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </div>
-            {/* Service 1 */}
-            <div className="services__content">
-              <div>
-                <i class="bx bx-credit-card-alt skills__icon"></i>
-                <h3 className="services__title">
-                  Creating <br></br> Landing pages
-                </h3>
-              </div>
-              <span
-                className="button button--flex button--small button--link services__button"
-                onClick={() => openModal(3)}
-              >
-                View more
-                <i className="uil uil-arrow-right button__icon"></i>
-              </span>
-
-              {/* Modal for Service 1 */}
-              {activeModal === 3 && (
-                <div className="services__modal active-modal">
-                  <div className="services__modal-content">
-                    <h4 className="services__modal-title">Landing Pages</h4>
-                    <i
-                      class="bx bxs-x-square  services__modal-close"
-                      onClick={closeModal}
-                    ></i>
-                    <ul className="services__modal-services grid">
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>
-                          Develop Dynamic Routing for Landing Pages in Next.js
-                          and React JS .
-                        </p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>Landing Pages for Marketing Purposes</p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>Use or Integrate CMS for Dynamic Content</p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>Portfolio-Based Landing Pages</p>
-                      </li>
-                      <li className="services__modal-service">
-                        <i className="uil uil-check-circle services__modal-icon"></i>
-                        <p>Optimize Landing Pages for Conversion</p>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          {/* <!--==================== PROJECT IN MIND ====================--> */}
-          <section class="project section bd-grid">
-            <div class="project__bg">
-              <div class="project__container container grid">
-                <div class="project__data">
-                  <h2 class="project__title">You have a new project?</h2>
-                  <p class="project__description">
-                    If you have a web development project in mind, don’t
-                    hesitate to reach out!<br></br> I’m here to help bring your
-                    ideas to life.
-                  </p>
-                  <a href="#contact" class="button-contact">
-                    Contact me
-                    <i class="bx bxs-send"></i>{" "}
-                  </a>
-                </div>
-                {/* <!-- <img src="assets/img/project.png" alt="" class="project__img"> --> */}
-              </div>
-            </div>
-          </section>
-        </section>
-
         {/*===== WORK =====*/}
         <section className="work section" id="work">
           <h2 className="section-title">Work</h2>
           <div className="work__container bd-grid">
             {[
               {
-                src: work1,
-                link: "https://github.com/Gunasekar16082001/Gym-web-DarkGym",
+                src: "/megnisiam.png",
+                link: "https://maglifewater.com/",
               },
               {
-                src: work2,
-                link: "https://github.com/Gunasekar16082001/movie-app-guna.git",
+                src: "/jaiso.png",
+                link: "https://jaisho.netlify.app/",
               },
               {
-                src: work3,
-                link: "https://github.com/Gunasekar16082001/Tn-toursim",
+                src: "/ai-chat.png",
+                link: "https://gu-gu-ai-chat.netlify.app/",
               },
               {
-                src: work4,
-                link: "https://github.com/Gunasekar16082001/image-search-engine-opearater",
+                src: "/dashboard.png",
+                link: "https://juspay-dashboard-guna.netlify.app/",
               },
               {
                 src: work5,
-                link: "https://github.com/Gunasekar16082001/XO-game-gs",
+                link: "https://github.com/Gunasekar16082001/Gym-web-DarkGym",
               },
               {
                 src: work6,
-                link: "https://github.com/Gunasekar16082001/Expense-Tracker.git",
+                link: "https://github.com/Gunasekar16082001/movie-app-guna.git",
               },
               {
                 src: work7,
+                link: "https://github.com/Gunasekar16082001/Tn-toursim",
+              },
+              {
+                src: work1,
+                link: "https://github.com/Gunasekar16082001/image-search-engine-opearater",
+              },
+              {
+                src: work2,
+                link: "https://github.com/Gunasekar16082001/XO-game-gs",
+              },
+              {
+                src: work3,
+                link: "https://github.com/Gunasekar16082001/Expense-Tracker.git",
+              },
+              {
+                src: work4,
                 link: "https://github.com/Gunasekar16082001/Baby-car-web.git",
               },
             ].map((work, index) => (
@@ -877,15 +679,10 @@ const App = () => {
           <div class="footer__container">
             <div>
               <h1 class="footer__title">Gunasekar</h1>
-              <span class="footer__subtitle">Front-End Developer</span>
+              <span class="footer__subtitle">Software Developer</span>
             </div>
 
             <ul class="footer__links">
-              <li>
-                <a href="#services" class="footer__link">
-                  Services
-                </a>
-              </li>
               <li>
                 <a href="#work" class="footer__link">
                   Works
