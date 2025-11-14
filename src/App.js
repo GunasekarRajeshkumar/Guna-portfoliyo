@@ -116,7 +116,12 @@ const App = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
 
-  const texts = ["Front End Developer", "Web Developer"];
+  const texts = [
+    "Software Developer",
+    "AI-Powered Developer",
+    "Front End Developer",
+    "Web Developer",
+  ];
   const typingSpeed = isDeleting ? 100 : 150;
   const pauseTime = 1000; // Time before starting next text
 
@@ -206,12 +211,16 @@ const App = () => {
               <br />
               I'm <span className="home__title-color">Guna</span>
               <br />
-              <span>{text}</span>
+              <span className="typing-text">
+                {text}
+                <span className="blink-cursor">|</span>
+              </span>
             </h1>
             <a
-              href="https://drive.google.com/file/d/1NnPvAZvYrtgfSIqnhWErk4qinhOlbN7i/view?usp=sharing"
+              href="https://drive.google.com/file/d/1YmqrDVSlobqqUd-KO7ThgQUgugdj9O4d/view?usp=sharing"
               className="button"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Download Resume
             </a>
@@ -219,20 +228,18 @@ const App = () => {
 
           <div className="home__social">
             <a
-              href="https://www.linkedin.com/in/gunasekar-r-b076981b9/"
+              href="https://linkedin.com/in/gunasekar-rajeshkumar"
               className="home__social-icon"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <i className="bx bxl-linkedin"></i>
             </a>
             <a
-              href="https://www.instagram.com/ryv_guna_s/"
+              href="https://github.com/GunasekarRajeshkumar"
               className="home__social-icon"
-            >
-              <i class="bx bxl-instagram-alt"></i>{" "}
-            </a>
-            <a
-              href="https://github.com/Gunasekar16082001"
-              className="home__social-icon"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <i className="bx bxl-github"></i>
             </a>
@@ -273,26 +280,27 @@ const App = () => {
             <div>
               <h2 className="about__subtitle">I'm Guna</h2>
               <p className="about__text">
-                Being a dedicated developer, I possess a strong drive for
-                continuous learning and personal growth. Actively participating
-                in hackathons and events organized by esteemed companies such as
-                GitHub and Microsoft has allowed me to stay updated with the
-                latest industry trends. Furthermore, I actively engage with the
-                Madurai Tech Community, fostering connections and expanding my
-                professional network. Notably, my experiences in various college
-                events and hackathons have honed my teamwork and leadership
-                abilities, enabling me to effectively collaborate and lead
-                teams.
+                I am a dedicated Software and Frontend Developer with 2.8+ years
+                of experience building fast, responsive, and SEO-friendly web
+                applications using React.js, Next.js, TypeScript, and modern UI
+                frameworks. I also work with AI-driven features, integrating
+                intelligent APIs and automation workflows to enhance user
+                experiences and create smarter interfaces. I have developed and
+                maintained multiple production-level websites with a strong
+                focus on performance optimization, clean architecture, and
+                scalable component design. I enjoy combining frontend
+                engineering with AI innovation to build modern, impactful, and
+                user-centric digital products.
               </p>
               <div className="about__info">
                 <div className="about_card">
-                  <span class="about__info-title">1.6+</span>
+                  <span class="about__info-title">2.8+</span>
                   <span class="about__info-name">
                     Years <br></br> experience
                   </span>
                 </div>
                 <div className="about_card">
-                  <span class="about__info-title">10+</span>
+                  <span class="about__info-title">12+</span>
                   <span class="about__info-name">
                     Completed <br></br> certifications
                   </span>
@@ -310,89 +318,44 @@ const App = () => {
 
         {/*===== SKILLS =====*/}
         <section className="skills section" id="skills">
-          <h2 className="section-title">Known Tech Stack</h2>
-          <div className="skills__container bd-grid">
-            <div style={{ display: "contents" }}>
-              {/* Skills data array */}
+          <h2 className="section-title">Core Skills</h2>
+          <div className="tech-stack__container bd-grid">
+            <div className="tech-stack__wrapper">
               {[
-                {
-                  name: "React JS",
-                  percentage: "80%",
-                  icon: "bx bxl-react",
-                },
-
-                {
-                  name: "NodeJS",
-                  percentage: "50%",
-                  icon: "bx bxl-nodejs",
-                },
-                {
-                  name: "Next JS",
-                  percentage: "65%",
-                  icon: "bx bx-code-alt",
-                },
-                {
-                  name: "Express JS",
-                  percentage: "50%",
-                  icon: "bx bx-code-alt",
-                },
-
-                {
-                  name: "Angular",
-                  percentage: "60%",
-                  icon: "bx bxl-angular",
-                },
-                {
-                  name: "MongoDB",
-                  percentage: "50%",
-                  icon: "bx bxl-mongodb",
-                },
-                {
-                  name: "HTML",
-                  percentage: "90%",
-                  icon: "bx bxl-html5",
-                },
-                {
-                  name: "Strapi",
-                  percentage: "55%",
-                  icon: "bx bx-code-alt",
-                },
-                {
-                  name: "CSS",
-                  percentage: "90%",
-                  icon: "bx bxl-css3",
-                },
-                {
-                  name: "FireBase",
-                  percentage: "40%",
-                  icon: "bx bxl-firebase",
-                },
-                {
-                  name: "JavaScript",
-                  percentage: "80%",
-                  icon: "bx bxl-javascript",
-                },
-
-                {
-                  name: "RestAPI",
-                  percentage: "60%",
-                  icon: "bx bx-code-alt",
-                },
+                "React.js",
+                "Next.js",
+                "Angular",
+                "TypeScript",
+                "JavaScript (ES6+)",
+                "Python",
+                "Front End Development",
+                "Web Development",
+                "Full Stack Development",
+                "AI Powered Development",
+                "HTML5",
+                "CSS3",
+                "Tailwind CSS",
+                "Material UI",
+                "Bootstrap",
+                "Performance Optimization",
+                "REST API Integration",
+                "Strapi (Headless CMS)",
+                "Firebase (Realtime DB, Auth, Hosting)",
+                "PostGraph",
+                "Generative AI (OpenAI / ChatGPT API)",
+                "AI Chat UI & Voice Assistant Design",
+                "Prompt Engineering",
+                "Git & GitHub",
+                "NPM / Yarn",
+                "Postman / Thunder Client",
+                "Netlify",
+                "Cursor",
+                "GitHub Copilot",
+                "V0",
+                "Lovely AI Tools & More",
               ].map((skill, index) => (
-                <div className="skills__data" key={index}>
-                  <div className="skills__names">
-                    <i className={`${skill.icon} skills__icon`}></i>
-                    <span className="skills__name">{skill.name}</span>
-                  </div>
-                  <div
-                    className={`skills__bar`}
-                    style={{ width: "100%" }}
-                  ></div>
-                  <div>
-                    {/* <span className="skills__percentage">
-                      {skill.percentage}
-                    </span> */}
-                  </div>
+                <div className="tech-stack__badge" key={index}>
+                  {skill}
                 </div>
               ))}
             </div>
@@ -419,21 +382,22 @@ const App = () => {
                       Web Developer (2023)
                     </span>
                     <div class="qualification__calendar passage">
-                      <i class="uil uil-calendar-alt"></i>I am currently working
-                      as a web developer at Digital Regenesys in Mumbai. My tech
-                      stack includes React.js, Next.js, and Strapi. I am
-                      managing five projects at this product-based company,
-                      which focuses on educational platforms. I have revamped
-                      the entire website and built a UK-specific page from
-                      scratch. My work involves creating landing pages,
-                      developing full websites, and working with CMS platforms.
-                      I have extensive experience in website revamps,
-                      performance optimization, and logical problem-solving
-                      tasks at Regensys. Additionally, I handle digital
-                      marketing tech tasks such as SEO, resolving Google bot
-                      crawling issues, and marketing technology-related
-                      projects. I’ve also conducted significant research and
-                      development in these areas.
+                      <i class="uil uil-calendar-alt"></i>I currently work as a
+                      Software and Frontend Developer with 2+ years of
+                      experience, specializing in React.js, Next.js, TypeScript,
+                      JavaScript, and modern UI/UX implementation. I actively
+                      leverage AI tools and integrations to boost
+                      productivity—using AI for faster debugging, code
+                      optimization, component generation, performance analysis,
+                      and smarter development workflows. In my projects, I build
+                      high-performance, responsive, and SEO-optimized web
+                      applications while implementing AI-driven features such as
+                      intelligent automation, predictive user interactions,
+                      smart UI components, and API-based enhancements. I focus
+                      deeply on code quality, DOM and performance optimization,
+                      page-speed improvements, and delivering production-ready
+                      solutions that are scalable, secure, and aligned with
+                      modern industry standards.
                     </div>
                   </div>
 
@@ -457,18 +421,18 @@ const App = () => {
                       Software Developer Intern(2022 - 2023)
                     </span>
                     <div class="qualification__calendar passage">
-                      <i class="uil uil-calendar-alt"></i>During my college
-                      years, I inter as a software developer at Mavencart for
-                      six months. I had the opportunity to contribute to a
-                      real-time project for Caratlane.com, where I developed
-                      single-page applications, including a festival page, to
-                      enhance the user interface. I also gained valuable
-                      experience with back-end systems and cloud platforms. My
-                      passion for web and application development has driven my
-                      pursuit of a successful IT career. Working on real-time
-                      projects and improving UI designs further honed my skills.
-                      As recognition for my contributions, I received a monthly
-                      stipend of ₹18,000.
+                      <i class="uil uil-calendar-alt"></i>During my internship,
+                      I gained hands-on experience in frontend development,
+                      where I worked with HTML, CSS, JavaScript, React.js
+                      fundamentals, and component-based architecture. I
+                      contributed to building small modules, fixing UI bugs,
+                      improving layouts, and understanding real-world
+                      development workflows such as API integration, Git version
+                      control, and responsive design. My internship helped me
+                      build a strong foundation in frontend technologies,
+                      problem-solving, and clean coding practices, which shaped
+                      my transition into a full-time role where I now combine
+                      frontend engineering with AI-driven development.
                     </div>
                   </div>
                 </div>
