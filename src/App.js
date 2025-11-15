@@ -12,6 +12,13 @@ import work7 from "./img/work7.png";
 
 import emailjs from "@emailjs/browser";
 
+const TYPING_TEXTS = [
+  "Software Developer",
+  "AI-Powered Developer",
+  "Front End Developer",
+  "Web Developer",
+];
+
 const App = () => {
   useEffect(() => {
     // ScrollReveal setup
@@ -103,18 +110,12 @@ const App = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
 
-  const texts = [
-    "Software Developer",
-    "AI-Powered Developer",
-    "Front End Developer",
-    "Web Developer",
-  ];
   const typingSpeed = isDeleting ? 100 : 150;
   const pauseTime = 1000; // Time before starting next text
 
   useEffect(() => {
     const handleTyping = () => {
-      const currentText = texts[loop % texts.length];
+      const currentText = TYPING_TEXTS[loop % TYPING_TEXTS.length];
       const updatedText = isDeleting
         ? currentText.substring(0, index - 1)
         : currentText.substring(0, index + 1);
@@ -132,7 +133,7 @@ const App = () => {
 
     const typingTimeout = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(typingTimeout);
-  }, [text, index, isDeleting, loop]);
+  }, [text, index, isDeleting, loop, typingSpeed]);
 
   return (
     <div>
@@ -140,7 +141,7 @@ const App = () => {
       <header className="l-header">
         <nav className="nav bd-grid">
           <div>
-            <a href="#" className="nav__logo">
+            <a href="#home" className="nav__logo">
               Guna.
             </a>
           </div>
