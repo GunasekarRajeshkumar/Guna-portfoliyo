@@ -21,36 +21,57 @@ const TYPING_TEXTS = [
 
 const App = () => {
   useEffect(() => {
-    // ScrollReveal setup
-    const sr = ScrollReveal({
-      origin: "top",
-      distance: "60px",
-      duration: 2000,
-      delay: 200,
+    // ScrollReveal setup - removed for custom animations
+    // Home section animations are handled via CSS animations
+
+    // Scroll-triggered animations for sections and boxes
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      observer.observe(section);
+      section.classList.add("section");
     });
 
-    sr.reveal(
-      ".home__data, .about__img, .skills__subtitle, .skills__text ",
-      {}
+    // Observe all section boxes
+    const sectionBoxes = document.querySelectorAll(
+      ".about__container, .tech-stack__container, .qualification__container, .work__container, .contact__container"
     );
-    sr.reveal(
-      ".home__img, .about__subtitle, .about__text, .about__info, .skills__img, .qualification__section ",
-      {
-        delay: 400,
-      }
-    );
-    sr.reveal(".home__social-icon  ,.qualification__data", {
-      interval: 200,
+    sectionBoxes.forEach((box) => {
+      observer.observe(box);
     });
-    sr.reveal(".skills__data, .work__img, .contact__input ", { interval: 200 });
+
+    // Observe about image separately for smooth animation
+    const aboutImages = document.querySelectorAll(".about__img");
+    aboutImages.forEach((img) => {
+      observer.observe(img);
+    });
+
+    // Observe qualification data items
+    const qualificationData = document.querySelectorAll(".qualification__data");
+    qualificationData.forEach((item, index) => {
+      observer.observe(item);
+    });
 
     // Scroll active link logic
-    const sections = document.querySelectorAll("section[id]");
+    const sectionElements = document.querySelectorAll("section[id]");
 
     const scrollActive = () => {
       const scrollY = window.pageYOffset;
 
-      sections.forEach((section) => {
+      sectionElements.forEach((section) => {
         const sectionHeight = section.offsetHeight;
         const sectionTop = section.offsetTop - 50;
         const sectionId = section.getAttribute("id");
@@ -75,6 +96,7 @@ const App = () => {
 
     return () => {
       window.removeEventListener("scroll", scrollActive);
+      observer.disconnect();
     };
   }, []);
 
@@ -109,6 +131,9 @@ const App = () => {
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
+  const [botOpen, setBotOpen] = useState(false);
+  const [botMessages, setBotMessages] = useState([]);
+  const messagesEndRef = useRef(null);
 
   const typingSpeed = isDeleting ? 100 : 150;
   const pauseTime = 1000; // Time before starting next text
@@ -134,6 +159,12 @@ const App = () => {
     const typingTimeout = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(typingTimeout);
   }, [text, index, isDeleting, loop, typingSpeed]);
+
+  useEffect(() => {
+    if (botMessages.length > 0 && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [botMessages]);
 
   return (
     <div>
@@ -239,12 +270,12 @@ const App = () => {
               </mask>
               <g mask="url(#mask0)">
                 <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z" />
-                <image 
-                  className="home__blob-img" 
-                  x="0" 
-                  y="0" 
-                  width="479" 
-                  height="467" 
+                <image
+                  className="home__blob-img"
+                  x="0"
+                  y="0"
+                  width="479"
+                  height="467"
                   href="/guna.jpg"
                   preserveAspectRatio="xMidYMid slice"
                 />
@@ -253,11 +284,11 @@ const App = () => {
           </div>
         </section>
         {/* ==========Scrole========= */}
-        <div class="home__scroll bd-grid">
-          <a href="#about" class="home__scroll-button button--flex">
-            <i class="bx bx-mouse"></i>{" "}
-            <span class="home__scroll-name">Scroll Down</span>
-            <i class="bx bx-down-arrow-alt"></i>{" "}
+        <div className="home__scroll bd-grid">
+          <a href="#about" className="home__scroll-button button--flex">
+            <i className="bx bx-mouse"></i>{" "}
+            <span className="home__scroll-name">Scroll Down</span>
+            <i className="bx bx-down-arrow-alt"></i>{" "}
           </a>
         </div>
 
@@ -285,20 +316,20 @@ const App = () => {
               </p>
               <div className="about__info">
                 <div className="about_card">
-                  <span class="about__info-title">2.8+</span>
-                  <span class="about__info-name">
+                  <span className="about__info-title">2.8+</span>
+                  <span className="about__info-name">
                     Years <br></br> experience
                   </span>
                 </div>
                 <div className="about_card">
-                  <span class="about__info-title">12+</span>
-                  <span class="about__info-name">
+                  <span className="about__info-title">12+</span>
+                  <span className="about__info-name">
                     Completed <br></br> certifications
                   </span>
                 </div>
                 <div className="about_card">
-                  <span class="about__info-title">2</span>
-                  <span class="about__info-name">
+                  <span className="about__info-title">2</span>
+                  <span className="about__info-name">
                     companies<br></br>worked
                   </span>
                 </div>
@@ -354,26 +385,26 @@ const App = () => {
         </section>
 
         {/* <!--==================== Experiance ====================--> */}
-        <section class="qualification__section" id="experiance">
-          <h2 class="section-title">Experiance</h2>
+        <section className="qualification__section section" id="experiance">
+          <h2 className="section-title">Experiance</h2>
 
-          <div class="qualification__container bd-grid">
-            <div class="qualification__sections">
+          <div className="qualification__container bd-grid">
+            <div className="qualification__sections">
               {/* <!--==================== Experiance CONTENT 1 ====================--> */}
               <div
-                class="qualification__content qualification__active"
+                className="qualification__content qualification__active"
                 data-content
                 id="education"
               >
                 {/* <!--==================== experiance ====================-->  */}
-                <div class="qualification__data mobile_qualification__data">
+                <div className="qualification__data mobile_qualification__data">
                   <div className="qualification__data_Left">
-                    <h3 class="qualification__title">Digital Regenesys </h3>
-                    <span class="qualification__subtitle">
+                    <h3 className="qualification__title">Digital Regenesys </h3>
+                    <span className="qualification__subtitle">
                       Software Developer (2023)
                     </span>
-                    <div class="qualification__calendar passage">
-                      <i class="uil uil-calendar-alt"></i>I currently work as a
+                    <div className="qualification__calendar passage">
+                      <i className="uil uil-calendar-alt"></i>I currently work as a
                       Software and Frontend Developer with 2+ years of
                       experience, specializing in React.js, Next.js, TypeScript,
                       JavaScript, and modern UI/UX implementation. I actively
@@ -393,26 +424,26 @@ const App = () => {
                   </div>
 
                   <div className="mobile_qualification__hide">
-                    <span class="qualification__rounder"></span>
-                    <span class="qualification__line"></span>
+                    <span className="qualification__rounder"></span>
+                    <span className="qualification__line"></span>
                   </div>
                 </div>
 
                 {/* <!--==================== Experiance====================-->  */}
-                <div class="qualification__data mobile_qualification__data">
+                <div className="qualification__data mobile_qualification__data">
                   <div></div>
                   <div className="mobile_qualification__hide">
-                    <span class="qualification__rounder"></span>
-                    {/* <!-- <span class="qualification__line"></span> --> */}
+                    <span className="qualification__rounder"></span>
+                    {/* <!-- <span className="qualification__line"></span> --> */}
                   </div>
 
                   <div>
-                    <h3 class="qualification__title">MavenCart</h3>
-                    <span class="qualification__subtitle">
+                    <h3 className="qualification__title">MavenCart</h3>
+                    <span className="qualification__subtitle">
                       Software Developer Intern(2022 - 2023)
                     </span>
-                    <div class="qualification__calendar passage">
-                      <i class="uil uil-calendar-alt"></i>During my internship,
+                    <div className="qualification__calendar passage">
+                      <i className="uil uil-calendar-alt"></i>During my internship,
                       I gained hands-on experience in frontend development,
                       where I worked with HTML, CSS, JavaScript, React.js
                       fundamentals, and component-based architecture. I
@@ -490,97 +521,97 @@ const App = () => {
         </section>
 
         {/* <!--==================== QUALIFICATION ====================--> */}
-        <section class="qualification__section">
-          <h2 class="section-title">Qualification</h2>
+        <section className="qualification__section section">
+          <h2 className="section-title">Qualification</h2>
 
-          <div class="qualification__container bd-grid">
-            <div class="qualification__sections">
+          <div className="qualification__container bd-grid">
+            <div className="qualification__sections">
               {/* <!--==================== QUALIFICATION CONTENT 1 ====================--> */}
               <div
-                class="qualification__content qualification__active"
+                className="qualification__content qualification__active"
                 data-content
                 id="education"
               >
                 {/* <!--==================== QUALIFICATION 1 ====================-->  */}
-                <div class="qualification__data">
+                <div className="qualification__data">
                   <div className="qualification__data_Left">
-                    <h3 class="qualification__title">
+                    <h3 className="qualification__title">
                       Bachelor of Engineering
                     </h3>
-                    <span class="qualification__subtitle">
+                    <span className="qualification__subtitle">
                       Mechanical Engineering
                     </span>
-                    <div class="qualification__calendar">
-                      <i class="uil uil-calendar-alt"></i>
+                    <div className="qualification__calendar">
+                      <i className="uil uil-calendar-alt"></i>
                       Velammal college of engineering and technology (2019 -
                       2023)
                     </div>
                   </div>
 
                   <div>
-                    <span class="qualification__rounder"></span>
-                    <span class="qualification__line"></span>
+                    <span className="qualification__rounder"></span>
+                    <span className="qualification__line"></span>
                   </div>
                 </div>
 
                 {/* <!--==================== QUALIFICATION 2 ====================-->  */}
-                <div class="qualification__data">
+                <div className="qualification__data">
                   <div></div>
                   <div>
-                    <span class="qualification__rounder"></span>
-                    <span class="qualification__line"></span>
+                    <span className="qualification__rounder"></span>
+                    <span className="qualification__line"></span>
                   </div>
 
                   <div>
-                    <h3 class="qualification__title">
+                    <h3 className="qualification__title">
                       CSC Computer Education{" "}
                     </h3>
-                    <span class="qualification__subtitle">
+                    <span className="qualification__subtitle">
                       Advanced Diploma in Java Programming (ADJP){" "}
                     </span>
-                    <div class="qualification__calendar">
-                      <i class="uil uil-calendar-alt"></i>
+                    <div className="qualification__calendar">
+                      <i className="uil uil-calendar-alt"></i>
                       2018 - 2019
                     </div>
                   </div>
                 </div>
 
                 {/* <!--==================== QUALIFICATION 3 ====================-->  */}
-                <div class="qualification__data">
+                <div className="qualification__data">
                   <div className="qualification__data_Left">
-                    <h3 class="qualification__title">
+                    <h3 className="qualification__title">
                       Sethupati Higher Secondary School{" "}
                     </h3>
-                    <span class="qualification__subtitle">
+                    <span className="qualification__subtitle">
                       Computer Science{" "}
                     </span>
-                    <div class="qualification__calendar">
-                      <i class="uil uil-calendar-alt"></i>
+                    <div className="qualification__calendar">
+                      <i className="uil uil-calendar-alt"></i>
                       2017 - 2019
                     </div>
                   </div>
 
                   <div>
-                    <span class="qualification__rounder"></span>
-                    <span class="qualification__line"></span>
+                    <span className="qualification__rounder"></span>
+                    <span className="qualification__line"></span>
                   </div>
                 </div>
 
                 {/* <!--==================== QUALIFICATION 4 ====================-->  */}
-                <div class="qualification__data">
+                <div className="qualification__data">
                   <div></div>
                   <div>
-                    <span class="qualification__rounder"></span>
-                    {/* <!-- <span class="qualification__line"></span> --> */}
+                    <span className="qualification__rounder"></span>
+                    {/* <!-- <span className="qualification__line"></span> --> */}
                   </div>
 
                   <div>
-                    <h3 class="qualification__title">
+                    <h3 className="qualification__title">
                       Thiagarajar Model Higher Secondary School{" "}
                     </h3>
-                    <span class="qualification__subtitle">High School </span>
-                    <div class="qualification__calendar">
-                      <i class="uil uil-calendar-alt"></i>
+                    <span className="qualification__subtitle">High School </span>
+                    <div className="qualification__calendar">
+                      <i className="uil uil-calendar-alt"></i>
                       2017
                     </div>
                   </div>
@@ -590,37 +621,37 @@ const App = () => {
           </div>
         </section>
         {/* <!--==================== CONTACT ME ====================--> */}
-        <section class="contact section" id="contact">
-          <h2 class="section-title">Contact me</h2>
+        <section className="contact section" id="contact">
+          <h2 className="section-title">Contact me</h2>
 
-          <div class="contact__container bd-grid grid">
+          <div className="contact__container bd-grid grid">
             <div>
-              <div class="contact__information">
-                <i class="uil uil-phone-alt contact__icon"></i>
+              <div className="contact__information">
+                <i className="uil uil-phone-alt contact__icon"></i>
 
                 <div>
-                  <h3 class="contact__title">Call me</h3>
-                  <span class="contatc__subtitle">(+91) 6374463809</span>
+                  <h3 className="contact__title">Call me</h3>
+                  <span className="contatc__subtitle">(+91) 6374463809</span>
                 </div>
               </div>
 
-              <div class="contact__information">
-                <i class="uil uil-envelope contact__icon"></i>
+              <div className="contact__information">
+                <i className="uil uil-envelope contact__icon"></i>
 
                 <div>
-                  <h3 class="contact__title">E-mail</h3>
-                  <span class="contatc__subtitle">
+                  <h3 className="contact__title">E-mail</h3>
+                  <span className="contatc__subtitle">
                     rgunasekar1608@gmail.com
                   </span>
                 </div>
               </div>
 
-              <div class="contact__information">
-                <i class="uil uil-map-marker contact__icon"></i>
+              <div className="contact__information">
+                <i className="uil uil-map-marker contact__icon"></i>
 
                 <div>
-                  <h3 class="contact__title">Location</h3>
-                  <span class="contatc__subtitle">Madurai, Tamil nadu</span>
+                  <h3 className="contact__title">Location</h3>
+                  <span className="contatc__subtitle">Madurai, Tamil nadu</span>
                 </div>
               </div>
             </div>
@@ -682,29 +713,139 @@ const App = () => {
       </main>
 
       {/* <!--==================== FOOTER ====================--> */}
-      <div class="footer">
-        <div class="footer__bg  bd-grid ">
-          <div class="footer__container">
-            <div>
-              <h1 class="footer__title">Gunasekar</h1>
-              <span class="footer__subtitle">Software Developer</span>
+      <div className="footer">
+        <div className="footer__bg  bd-grid ">
+          <div className="footer__container">
+            <div className="footer__column">
+              <h1 className="footer__title">Gunasekar</h1>
+              <span className="footer__subtitle">Software Developer</span>
+              <p style={{ color: "rgba(255, 255, 255, 0.7)", marginTop: "1rem", fontSize: "0.9rem" }}>
+                Building modern, responsive web applications with AI-powered features.
+              </p>
+              <div className="footer__social-links">
+                <a href="https://github.com/Gunasekar16082001" className="footer__social-link" target="_blank" rel="noopener noreferrer" title="GitHub">
+                  <i className="uil uil-github-alt"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/gunasekar-r-16082001" className="footer__social-link" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                  <i className="uil uil-linkedin-alt"></i>
+                </a>
+                <a href="mailto:rgunasekar1608@gmail.com" className="footer__social-link" title="Email">
+                  <i className="uil uil-envelope-alt"></i>
+                </a>
+                <a href="https://wa.me/916374463809" className="footer__social-link" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                  <i className="uil uil-whatsapp"></i>
+                </a>
+                <a href="tel:+916374463809" className="footer__social-link" title="Phone">
+                  <i className="uil uil-phone-alt"></i>
+                </a>
+              </div>
             </div>
 
-            <ul class="footer__links">
-              <li>
-                <a href="#work" class="footer__link">
-                  Works
-                </a>
-              </li>
-              <li>
-                <a href="#contact" class="footer__link">
-                  Contact
-                </a>
-              </li>
-            </ul>
+            <div className="footer__column">
+              <h3 className="footer__column-title">Quick Links</h3>
+              <ul className="footer__links">
+                <li>
+                  <a href="#home" className="footer__link">Home</a>
+                </li>
+                <li>
+                  <a href="#about" className="footer__link">About</a>
+                </li>
+                <li>
+                  <a href="#skills" className="footer__link">Skills</a>
+                </li>
+                <li>
+                  <a href="#work" className="footer__link">Works</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="footer__column">
+              <h3 className="footer__column-title">Services</h3>
+              <ul className="footer__links">
+                <li>
+                  <a href="#experiance" className="footer__link">Experience</a>
+                </li>
+                <li>
+                  <a href="#contact" className="footer__link">Contact</a>
+                </li>
+                <li>
+                  <a href="https://drive.google.com/file/d/1e00E22eEnqTzX30jjRWTsK1v517t-LAG/view?usp=sharing" className="footer__link" target="_blank" rel="noopener noreferrer">Resume</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="footer__column">
+              <h3 className="footer__column-title">Contact Info</h3>
+              <ul className="footer__links">
+                <li style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.9rem" }}>
+                  <i className="uil uil-phone" style={{ marginRight: "0.5rem" }}></i>
+                  (+91) 6374463809
+                </li>
+                <li style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.9rem" }}>
+                  <i className="uil uil-envelope" style={{ marginRight: "0.5rem" }}></i>
+                  rgunasekar1608@gmail.com
+                </li>
+                <li style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.9rem" }}>
+                  <i className="uil uil-map-marker" style={{ marginRight: "0.5rem" }}></i>
+                  Madurai, Tamil Nadu
+                </li>
+              </ul>
+            </div>
           </div>
-          <p class="footer__copy">&#169; Guna. All rights reserved.</p>
+          <p className="footer__copy">&#169; 2024 Gunasekar. All rights reserved.</p>
         </div>
+      </div>
+
+      {/* <!--==================== AI BOT ====================--> */}
+      <div className="ai-bot-container">
+        <div className={`ai-bot-chat ${botOpen ? "active" : ""}`}>
+          <div className="ai-bot-header">
+            <h3>Hi! I'm Guna's AI Assistant</h3>
+            <button className="ai-bot-close" onClick={() => setBotOpen(false)}>
+              <i className="uil uil-times"></i>
+            </button>
+          </div>
+          <div className="ai-bot-messages" ref={messagesEndRef}>
+            {botMessages.map((msg, idx) => (
+              <div key={idx} className={`ai-bot-message ${msg.type}`}>
+                {msg.text}
+              </div>
+            ))}
+          </div>
+          <div className="ai-bot-actions">
+            <a href="tel:+916374463809" className="ai-bot-action-btn">
+              <i className="uil uil-phone"></i>
+              Call
+            </a>
+            <a href="https://wa.me/916374463809" className="ai-bot-action-btn" target="_blank" rel="noopener noreferrer">
+              <i className="uil uil-whatsapp"></i>
+              WhatsApp
+            </a>
+            <a href="mailto:rgunasekar1608@gmail.com" className="ai-bot-action-btn">
+              <i className="uil uil-envelope"></i>
+              Email
+            </a>
+          </div>
+        </div>
+        <button className="ai-bot-button" onClick={() => {
+          setBotOpen(!botOpen);
+          if (!botOpen && botMessages.length === 0) {
+            const introMessages = [
+              { type: "bot", text: "Hello! 👋 I'm Guna's AI assistant. Let me tell you about him!" },
+              { type: "bot", text: "Gunasekar is a Software and Frontend Developer with 2.8+ years of experience. He specializes in React.js, Next.js, TypeScript, and modern UI frameworks." },
+              { type: "bot", text: "He builds fast, responsive, and SEO-friendly web applications. He also works with AI-driven features, integrating intelligent APIs and automation workflows." },
+              { type: "bot", text: "He has developed multiple production-level websites with a focus on performance optimization, clean architecture, and scalable component design." },
+              { type: "bot", text: "Currently working at Digital Regenesys as a Software Developer. Previously interned at MavenCart where he gained hands-on experience in frontend development." },
+              { type: "bot", text: "Would you like to connect with him? Use the buttons below to call, WhatsApp, or email!" }
+            ];
+            setBotMessages(introMessages);
+            setTimeout(() => {
+              messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }
+        }}>
+          <i className="uil uil-comment-dots"></i>
+        </button>
       </div>
     </div>
   );
