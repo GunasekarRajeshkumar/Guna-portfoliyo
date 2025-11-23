@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import ScrollReveal from "scrollreveal";
 import "./App.css";
 import GunaAbout from "./img/guna-4.jpg";
 import work1 from "./img/work1.png";
