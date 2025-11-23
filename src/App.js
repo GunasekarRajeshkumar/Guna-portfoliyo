@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import GunaAbout from "./img/guna-4.jpg";
 import work1 from "./img/work1.png";
@@ -9,7 +9,6 @@ import work5 from "./img/work5.png";
 import work6 from "./img/work6.png";
 import work7 from "./img/work7.png";
 import AIBot from "./components/AIBot";
-
 
 const TYPING_TEXTS = [
   "Software Developer",
@@ -114,7 +113,6 @@ const App = () => {
       observer.disconnect();
     };
   }, []);
-
 
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
@@ -451,11 +449,10 @@ const App = () => {
                       Software Developer (2023)
                     </span>
                     <div className="qualification__calendar passage">
-                      I currently work
-                      as a Software and Frontend Developer with 2+ years of
-                      experience, specializing in React.js, Next.js, TypeScript,
-                      JavaScript, and modern UI/UX implementation. I actively
-                      leverage AI tools and integrations to boost
+                      I currently work as a Software and Frontend Developer with
+                      2+ years of experience, specializing in React.js, Next.js,
+                      TypeScript, JavaScript, and modern UI/UX implementation. I
+                      actively leverage AI tools and integrations to boost
                       productivity—using AI for faster debugging, code
                       optimization, component generation, performance analysis,
                       and smarter development workflows. In my projects, I build
@@ -490,18 +487,18 @@ const App = () => {
                       Software Developer Intern(2022 - 2023)
                     </span>
                     <div className="qualification__calendar passage">
-                      During my
-                      internship, I gained hands-on experience in frontend
-                      development, where I worked with HTML, CSS, JavaScript,
-                      React.js fundamentals, and component-based architecture. I
-                      contributed to building small modules, fixing UI bugs,
-                      improving layouts, and understanding real-world
-                      development workflows such as API integration, Git version
-                      control, and responsive design. My internship helped me
-                      build a strong foundation in frontend technologies,
-                      problem-solving, and clean coding practices, which shaped
-                      my transition into a full-time role where I now combine
-                      frontend engineering with AI-driven development.
+                      During my internship, I gained hands-on experience in
+                      frontend development, where I worked with HTML, CSS,
+                      JavaScript, React.js fundamentals, and component-based
+                      architecture. I contributed to building small modules,
+                      fixing UI bugs, improving layouts, and understanding
+                      real-world development workflows such as API integration,
+                      Git version control, and responsive design. My internship
+                      helped me build a strong foundation in frontend
+                      technologies, problem-solving, and clean coding practices,
+                      which shaped my transition into a full-time role where I
+                      now combine frontend engineering with AI-driven
+                      development.
                     </div>
                   </div>
                 </div>

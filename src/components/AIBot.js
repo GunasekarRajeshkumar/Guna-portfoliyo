@@ -352,7 +352,7 @@ const AIBot = () => {
     formatted = formatted.replace(/\n/g, "<br />");
 
     // Convert bullet points (• or -)
-    formatted = formatted.replace(/^[•\-]\s+(.+)$/gm, "• $1");
+    formatted = formatted.replace(/^[•-]\s+(.+)$/gm, "• $1");
 
     return formatted;
   };
