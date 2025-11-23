@@ -478,7 +478,7 @@ const App = () => {
                       Software Developer (2023)
                     </span>
                     <div className="qualification__calendar passage">
-                      <i className="uil uil-calendar-alt"></i>I currently work
+                      I currently work
                       as a Software and Frontend Developer with 2+ years of
                       experience, specializing in React.js, Next.js, TypeScript,
                       JavaScript, and modern UI/UX implementation. I actively
@@ -517,7 +517,7 @@ const App = () => {
                       Software Developer Intern(2022 - 2023)
                     </span>
                     <div className="qualification__calendar passage">
-                      <i className="uil uil-calendar-alt"></i>During my
+                      During my
                       internship, I gained hands-on experience in frontend
                       development, where I worked with HTML, CSS, JavaScript,
                       React.js fundamentals, and component-based architecture. I

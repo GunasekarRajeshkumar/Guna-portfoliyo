@@ -24,9 +24,11 @@ const AIBot = () => {
 
   useEffect(() => {
     if (botMessages.length > 0 && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      }, 100);
     }
-  }, [botMessages]);
+  }, [botMessages, isTyping]);
 
   // Add messages one by one with delay
   const addMessagesSequentially = (messages) => {
@@ -252,6 +254,10 @@ const AIBot = () => {
         suggestions: response.suggestions || [],
       };
       setBotMessages((prev) => [...prev, botMessage]);
+      // Auto-scroll after message is added
+      setTimeout(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      }, 100);
     }, 1000);
   };
 
@@ -262,6 +268,31 @@ const AIBot = () => {
     setTimeout(() => {
       inputRef.current?.focus();
     }, 100);
+  };
+
+  // Format message text - convert markdown to HTML
+  const formatMessage = (text) => {
+    if (!text) return "";
+    
+    // Escape HTML first
+    let formatted = text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+    
+    // Convert **text** to <strong>text</strong>
+    formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    
+    // Convert *text* to <em>text</em> (only if not already bold)
+    formatted = formatted.replace(/(?<!\*)\*([^*]+?)\*(?!\*)/g, "<em>$1</em>");
+    
+    // Convert line breaks
+    formatted = formatted.replace(/\n/g, "<br />");
+    
+    // Convert bullet points (• or -)
+    formatted = formatted.replace(/^[•\-]\s+(.+)$/gm, "• $1");
+    
+    return formatted;
   };
 
   return (
@@ -301,7 +332,10 @@ const AIBot = () => {
         <div className="ai-bot-messages" ref={messagesEndRef}>
           {botMessages.map((msg, idx) => (
             <div key={idx} className={`ai-bot-message ${msg.type}`}>
-              <div className="ai-bot-message-text">{msg.text}</div>
+              <div 
+                className="ai-bot-message-text"
+                dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }}
+              />
               {msg.link && (
                 <a
                   href={msg.link}
