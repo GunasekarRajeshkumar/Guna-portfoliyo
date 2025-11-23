@@ -20,6 +20,22 @@ const TYPING_TEXTS = [
 ];
 
 const App = () => {
+  // Smooth scroll function without hash in URL
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   useEffect(() => {
     // ScrollReveal setup - removed for custom animations
     // Home section animations are handled via CSS animations
@@ -172,41 +188,99 @@ const App = () => {
       <header className="l-header">
         <nav className="nav bd-grid">
           <div>
-            <a href="#home" className="nav__logo">
+            <button
+              onClick={() => scrollToSection("home")}
+              className="nav__logo"
+              style={{ background: "none", border: "none", cursor: "pointer" }}
+            >
               Guna.
-            </a>
+            </button>
           </div>
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="#home" className="nav__link active-link">
+                <button
+                  onClick={() => scrollToSection("home")}
+                  className="nav__link active-link"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    font: "inherit",
+                  }}
+                >
                   Home
-                </a>
+                </button>
               </li>
               <li className="nav__item">
-                <a href="#about" className="nav__link">
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="nav__link"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    font: "inherit",
+                  }}
+                >
                   About
-                </a>
+                </button>
               </li>
               <li className="nav__item">
-                <a href="#skills" className="nav__link">
+                <button
+                  onClick={() => scrollToSection("skills")}
+                  className="nav__link"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    font: "inherit",
+                  }}
+                >
                   Skills
-                </a>
+                </button>
               </li>
               <li className="nav__item">
-                <a href="#experiance" className="nav__link">
+                <button
+                  onClick={() => scrollToSection("experiance")}
+                  className="nav__link"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    font: "inherit",
+                  }}
+                >
                   Experiance
-                </a>
+                </button>
               </li>
               <li className="nav__item">
-                <a href="#work" className="nav__link">
+                <button
+                  onClick={() => scrollToSection("work")}
+                  className="nav__link"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    font: "inherit",
+                  }}
+                >
                   Work
-                </a>
+                </button>
               </li>
               <li className="nav__item">
-                <a href="#contact" className="nav__link">
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="nav__link"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    font: "inherit",
+                  }}
+                >
                   Contact
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -242,7 +316,7 @@ const App = () => {
 
           <div className="home__social">
             <a
-              href="https://linkedin.com/in/gunasekar-rajeshkumar"
+              href="https://www.linkedin.com/in/guna-sekar-008264290/"
               className="home__social-icon"
               target="_blank"
               rel="noopener noreferrer"
@@ -285,11 +359,20 @@ const App = () => {
         </section>
         {/* ==========Scrole========= */}
         <div className="home__scroll bd-grid">
-          <a href="#about" className="home__scroll-button button--flex">
+          <button
+            onClick={() => scrollToSection("about")}
+            className="home__scroll-button button--flex"
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              font: "inherit",
+            }}
+          >
             <i className="bx bx-mouse"></i>{" "}
             <span className="home__scroll-name">Scroll Down</span>
             <i className="bx bx-down-arrow-alt"></i>{" "}
-          </a>
+          </button>
         </div>
 
         {/*===== ABOUT =====*/}
@@ -404,8 +487,8 @@ const App = () => {
                       Software Developer (2023)
                     </span>
                     <div className="qualification__calendar passage">
-                      <i className="uil uil-calendar-alt"></i>I currently work as a
-                      Software and Frontend Developer with 2+ years of
+                      <i className="uil uil-calendar-alt"></i>I currently work
+                      as a Software and Frontend Developer with 2+ years of
                       experience, specializing in React.js, Next.js, TypeScript,
                       JavaScript, and modern UI/UX implementation. I actively
                       leverage AI tools and integrations to boost
@@ -443,10 +526,10 @@ const App = () => {
                       Software Developer Intern(2022 - 2023)
                     </span>
                     <div className="qualification__calendar passage">
-                      <i className="uil uil-calendar-alt"></i>During my internship,
-                      I gained hands-on experience in frontend development,
-                      where I worked with HTML, CSS, JavaScript, React.js
-                      fundamentals, and component-based architecture. I
+                      <i className="uil uil-calendar-alt"></i>During my
+                      internship, I gained hands-on experience in frontend
+                      development, where I worked with HTML, CSS, JavaScript,
+                      React.js fundamentals, and component-based architecture. I
                       contributed to building small modules, fixing UI bugs,
                       improving layouts, and understanding real-world
                       development workflows such as API integration, Git version
@@ -609,7 +692,9 @@ const App = () => {
                     <h3 className="qualification__title">
                       Thiagarajar Model Higher Secondary School{" "}
                     </h3>
-                    <span className="qualification__subtitle">High School </span>
+                    <span className="qualification__subtitle">
+                      High School{" "}
+                    </span>
                     <div className="qualification__calendar">
                       <i className="uil uil-calendar-alt"></i>
                       2017
@@ -625,7 +710,7 @@ const App = () => {
           <h2 className="section-title">Contact me</h2>
 
           <div className="contact__container bd-grid grid">
-            <div>
+            <div className="contact__info-wrapper">
               <div className="contact__information">
                 <i className="uil uil-phone-alt contact__icon"></i>
 
@@ -655,59 +740,6 @@ const App = () => {
                 </div>
               </div>
             </div>
-
-            <form
-              className="contact__form grid"
-              ref={form}
-              onSubmit={sendEmail}
-            >
-              <div className="contact__inputs grid">
-                <div className="contact__content">
-                  <label className="contact__label">Name</label>
-                  <input
-                    type="text"
-                    className="contact__input"
-                    name="name"
-                    required
-                  />
-                </div>
-
-                <div className="contact__content">
-                  <label className="contact__label">E-mail</label>
-                  <input
-                    type="email"
-                    className="contact__input"
-                    name="email"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="contact__content">
-                <label className="contact__label">Phone number</label>
-                <input
-                  type="text"
-                  className="contact__input"
-                  name="phone"
-                  required
-                />
-              </div>
-
-              <div className="contact__content">
-                <label className="contact__label">Description</label>
-                <textarea
-                  className="contact__input"
-                  name="message"
-                  rows="7"
-                  required
-                ></textarea>
-              </div>
-
-              <button type="submit" className="button button--flex">
-                Send message
-                <i className="uil uil-message button__icon"></i>
-              </button>
-            </form>
           </div>
         </section>
       </main>
@@ -719,23 +751,56 @@ const App = () => {
             <div className="footer__column">
               <h1 className="footer__title">Gunasekar</h1>
               <span className="footer__subtitle">Software Developer</span>
-              <p style={{ color: "rgba(255, 255, 255, 0.7)", marginTop: "1rem", fontSize: "0.9rem" }}>
-                Building modern, responsive web applications with AI-powered features.
+              <p
+                style={{
+                  color: "rgba(255, 255, 255, 0.7)",
+                  marginTop: "1rem",
+                  fontSize: "0.9rem",
+                }}
+              >
+                Building modern, responsive web applications with AI-powered
+                features.
               </p>
               <div className="footer__social-links">
-                <a href="https://github.com/Gunasekar16082001" className="footer__social-link" target="_blank" rel="noopener noreferrer" title="GitHub">
+                <a
+                  href="https://github.com/GunasekarRajeshkumar"
+                  className="footer__social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="GitHub"
+                >
                   <i className="uil uil-github-alt"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/gunasekar-r-16082001" className="footer__social-link" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                <a
+                  href="https://www.linkedin.com/in/guna-sekar-008264290/"
+                  className="footer__social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                >
                   <i className="uil uil-linkedin-alt"></i>
                 </a>
-                <a href="mailto:rgunasekar1608@gmail.com" className="footer__social-link" title="Email">
+                <a
+                  href="mailto:rgunasekar1608@gmail.com"
+                  className="footer__social-link"
+                  title="Email"
+                >
                   <i className="uil uil-envelope-alt"></i>
                 </a>
-                <a href="https://wa.me/916374463809" className="footer__social-link" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+                <a
+                  href="https://wa.me/916374463809"
+                  className="footer__social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="WhatsApp"
+                >
                   <i className="uil uil-whatsapp"></i>
                 </a>
-                <a href="tel:+916374463809" className="footer__social-link" title="Phone">
+                <a
+                  href="tel:+916374463809"
+                  className="footer__social-link"
+                  title="Phone"
+                >
                   <i className="uil uil-phone-alt"></i>
                 </a>
               </div>
@@ -745,16 +810,24 @@ const App = () => {
               <h3 className="footer__column-title">Quick Links</h3>
               <ul className="footer__links">
                 <li>
-                  <a href="#home" className="footer__link">Home</a>
+                  <a href="#home" className="footer__link">
+                    Home
+                  </a>
                 </li>
                 <li>
-                  <a href="#about" className="footer__link">About</a>
+                  <a href="#about" className="footer__link">
+                    About
+                  </a>
                 </li>
                 <li>
-                  <a href="#skills" className="footer__link">Skills</a>
+                  <a href="#skills" className="footer__link">
+                    Skills
+                  </a>
                 </li>
                 <li>
-                  <a href="#work" className="footer__link">Works</a>
+                  <a href="#work" className="footer__link">
+                    Works
+                  </a>
                 </li>
               </ul>
             </div>
@@ -763,13 +836,24 @@ const App = () => {
               <h3 className="footer__column-title">Services</h3>
               <ul className="footer__links">
                 <li>
-                  <a href="#experiance" className="footer__link">Experience</a>
+                  <a href="#experiance" className="footer__link">
+                    Experience
+                  </a>
                 </li>
                 <li>
-                  <a href="#contact" className="footer__link">Contact</a>
+                  <a href="#contact" className="footer__link">
+                    Contact
+                  </a>
                 </li>
                 <li>
-                  <a href="https://drive.google.com/file/d/1e00E22eEnqTzX30jjRWTsK1v517t-LAG/view?usp=sharing" className="footer__link" target="_blank" rel="noopener noreferrer">Resume</a>
+                  <a
+                    href="https://drive.google.com/file/d/1e00E22eEnqTzX30jjRWTsK1v517t-LAG/view?usp=sharing"
+                    className="footer__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Resume
+                  </a>
                 </li>
               </ul>
             </div>
@@ -777,22 +861,48 @@ const App = () => {
             <div className="footer__column">
               <h3 className="footer__column-title">Contact Info</h3>
               <ul className="footer__links">
-                <li style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.9rem" }}>
-                  <i className="uil uil-phone" style={{ marginRight: "0.5rem" }}></i>
+                <li
+                  style={{
+                    color: "rgba(255, 255, 255, 0.8)",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  <i
+                    className="uil uil-phone"
+                    style={{ marginRight: "0.5rem" }}
+                  ></i>
                   (+91) 6374463809
                 </li>
-                <li style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.9rem" }}>
-                  <i className="uil uil-envelope" style={{ marginRight: "0.5rem" }}></i>
+                <li
+                  style={{
+                    color: "rgba(255, 255, 255, 0.8)",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  <i
+                    className="uil uil-envelope"
+                    style={{ marginRight: "0.5rem" }}
+                  ></i>
                   rgunasekar1608@gmail.com
                 </li>
-                <li style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "0.9rem" }}>
-                  <i className="uil uil-map-marker" style={{ marginRight: "0.5rem" }}></i>
+                <li
+                  style={{
+                    color: "rgba(255, 255, 255, 0.8)",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  <i
+                    className="uil uil-map-marker"
+                    style={{ marginRight: "0.5rem" }}
+                  ></i>
                   Madurai, Tamil Nadu
                 </li>
               </ul>
             </div>
           </div>
-          <p className="footer__copy">&#169; 2024 Gunasekar. All rights reserved.</p>
+          <p className="footer__copy">
+            &#169; 2024 Gunasekar. All rights reserved.
+          </p>
         </div>
       </div>
 
@@ -817,33 +927,62 @@ const App = () => {
               <i className="uil uil-phone"></i>
               Call
             </a>
-            <a href="https://wa.me/916374463809" className="ai-bot-action-btn" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://wa.me/916374463809"
+              className="ai-bot-action-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="uil uil-whatsapp"></i>
               WhatsApp
             </a>
-            <a href="mailto:rgunasekar1608@gmail.com" className="ai-bot-action-btn">
+            <a
+              href="mailto:rgunasekar1608@gmail.com"
+              className="ai-bot-action-btn"
+            >
               <i className="uil uil-envelope"></i>
               Email
             </a>
           </div>
         </div>
-        <button className="ai-bot-button" onClick={() => {
-          setBotOpen(!botOpen);
-          if (!botOpen && botMessages.length === 0) {
-            const introMessages = [
-              { type: "bot", text: "Hello! 👋 I'm Guna's AI assistant. Let me tell you about him!" },
-              { type: "bot", text: "Gunasekar is a Software and Frontend Developer with 2.8+ years of experience. He specializes in React.js, Next.js, TypeScript, and modern UI frameworks." },
-              { type: "bot", text: "He builds fast, responsive, and SEO-friendly web applications. He also works with AI-driven features, integrating intelligent APIs and automation workflows." },
-              { type: "bot", text: "He has developed multiple production-level websites with a focus on performance optimization, clean architecture, and scalable component design." },
-              { type: "bot", text: "Currently working at Digital Regenesys as a Software Developer. Previously interned at MavenCart where he gained hands-on experience in frontend development." },
-              { type: "bot", text: "Would you like to connect with him? Use the buttons below to call, WhatsApp, or email!" }
-            ];
-            setBotMessages(introMessages);
-            setTimeout(() => {
-              messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-            }, 100);
-          }
-        }}>
+        <button
+          className="ai-bot-button"
+          onClick={() => {
+            setBotOpen(!botOpen);
+            if (!botOpen && botMessages.length === 0) {
+              const introMessages = [
+                {
+                  type: "bot",
+                  text: "Hello! 👋 I'm Guna's AI assistant. Let me tell you about him!",
+                },
+                {
+                  type: "bot",
+                  text: "Gunasekar is a Software and Frontend Developer with 2.8+ years of experience. He specializes in React.js, Next.js, TypeScript, and modern UI frameworks.",
+                },
+                {
+                  type: "bot",
+                  text: "He builds fast, responsive, and SEO-friendly web applications. He also works with AI-driven features, integrating intelligent APIs and automation workflows.",
+                },
+                {
+                  type: "bot",
+                  text: "He has developed multiple production-level websites with a focus on performance optimization, clean architecture, and scalable component design.",
+                },
+                {
+                  type: "bot",
+                  text: "Currently working at Digital Regenesys as a Software Developer. Previously interned at MavenCart where he gained hands-on experience in frontend development.",
+                },
+                {
+                  type: "bot",
+                  text: "Would you like to connect with him? Use the buttons below to call, WhatsApp, or email!",
+                },
+              ];
+              setBotMessages(introMessages);
+              setTimeout(() => {
+                messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+              }, 100);
+            }
+          }}
+        >
           <i className="uil uil-comment-dots"></i>
         </button>
       </div>

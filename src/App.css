@@ -217,11 +217,9 @@ img:hover {
   align-items: center;
   font-weight: var(--font-semi);
   padding: 0.875rem 2.5rem;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: #ffffff;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   gap: 2rem;
@@ -229,7 +227,6 @@ img:hover {
 
 .nav:hover {
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  background: rgba(255, 255, 255, 0.8);
 }
 @media screen and (max-width: 767px) {
   .nav {
@@ -245,9 +242,7 @@ img:hover {
     width: 80%;
     height: calc(100vh - var(--header-height));
     padding: 2rem;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: #ffffff;
     border-radius: 20px 0 0 20px;
     box-shadow: -4px 0 32px rgba(0, 0, 0, 0.1);
     transition: 0.5s;
@@ -264,13 +259,24 @@ img:hover {
   display: inline-block;
   white-space: nowrap;
   border-radius: 8px;
+  text-align: left;
+  width: 100%;
+}
+
+.nav__link button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+  width: 100%;
+  text-align: left;
 }
 .nav__link:hover {
   position: relative;
   color: var(--text-color);
   background-color: var(--bg-gray);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 .nav__logo {
   color: var(--first-color);
@@ -307,8 +313,6 @@ img:hover {
 .active-link {
   color: var(--text-color);
   background-color: var(--bg-gray);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 /*=== Show menu ===*/
@@ -1592,29 +1596,28 @@ img:hover {
 
 /*==================== CONTACT ME ====================*/
 .contact__container {
-  row-gap: 3rem;
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 3rem;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact__info-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 @media screen and (max-width: 768px) {
   .contact__container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
     padding: 0 1rem;
   }
 
   .contact__information {
     padding: 0.875rem;
-  }
-
-  .contact__inputs {
-    flex-direction: column;
-    gap: 1rem;
   }
 }
 
@@ -1622,24 +1625,21 @@ img:hover {
   .contact__container {
     padding: 0 0.5rem;
   }
-
-  .contact__content {
-    padding: 0.5rem 0.75rem 0.25rem;
-  }
 }
 
 .contact__information {
   display: flex;
-  margin-bottom: 20px;
-  padding: 1rem;
+  align-items: center;
+  padding: 1.5rem;
   background: var(--bg-gray);
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   opacity: 0;
-  transform: translateX(-30px);
+  transform: translateY(30px);
   position: relative;
   overflow: hidden;
+  gap: 1rem;
 }
 
 .contact__container.animate .contact__information {
@@ -1659,7 +1659,7 @@ img:hover {
 @keyframes infoFadeIn {
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
@@ -1668,19 +1668,32 @@ img:hover {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-color: rgba(128, 128, 128, 0.4);
-  transform: translateX(5px);
-  box-shadow: 0 4px 15px rgba(128, 128, 128, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(128, 128, 128, 0.2);
 }
 
 .contact__icon {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: var(--first-color);
-  margin-right: var(--mb-0-75);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .contact__information:hover .contact__icon {
   transform: scale(1.2) rotate(5deg);
+}
+
+.contact__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.25rem;
+}
+
+.contatc__subtitle {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  display: block;
 }
 
 .contact__content {
@@ -1881,9 +1894,13 @@ img:hover {
 
 .footer__social-link i {
   font-size: 1.3rem !important;
-  display: inline-block;
-  line-height: 1;
-  color: #fff;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1 !important;
+  color: #fff !important;
+  width: 100%;
+  height: 100%;
 }
 
 .footer__social-link:hover {
