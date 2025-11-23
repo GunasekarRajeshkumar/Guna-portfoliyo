@@ -10,7 +10,6 @@ import work6 from "./img/work6.png";
 import work7 from "./img/work7.png";
 import AIBot from "./components/AIBot";
 
-import emailjs from "@emailjs/browser";
 
 const TYPING_TEXTS = [
   "Software Developer",
@@ -116,32 +115,6 @@ const App = () => {
     };
   }, []);
 
-  const form = useRef();
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_qijomwk",
-        "template_ajft70f",
-        form.current,
-        "3vIQ9tFAchty4PN8u"
-      )
-      .then(
-        () => {
-          console.log("SUCCESS!");
-          alert("Message sent successfully! We will get back to you soon.");
-          form.current.reset(); // Reset form after successful submission
-        },
-        (error) => {
-          console.error("FAILED...", error.text);
-          alert(
-            `Failed to send message: ${error.text}. Please check your input and try again.`
-          );
-        }
-      );
-  };
 
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
