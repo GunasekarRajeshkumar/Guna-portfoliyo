@@ -8,6 +8,7 @@ import work4 from "./img/work4.png";
 import work5 from "./img/work5.png";
 import work6 from "./img/work6.png";
 import work7 from "./img/work7.png";
+import AIBot from "./components/AIBot";
 
 import emailjs from "@emailjs/browser";
 
@@ -146,9 +147,6 @@ const App = () => {
   const [index, setIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [loop, setLoop] = useState(0);
-  const [botOpen, setBotOpen] = useState(false);
-  const [botMessages, setBotMessages] = useState([]);
-  const messagesEndRef = useRef(null);
 
   const typingSpeed = isDeleting ? 100 : 150;
   const pauseTime = 1000; // Time before starting next text
@@ -174,12 +172,6 @@ const App = () => {
     const typingTimeout = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(typingTimeout);
   }, [text, index, isDeleting, loop, typingSpeed]);
-
-  useEffect(() => {
-    if (botMessages.length > 0 && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [botMessages]);
 
   return (
     <div>
@@ -906,85 +898,7 @@ const App = () => {
       </div>
 
       {/* <!--==================== AI BOT ====================--> */}
-      <div className="ai-bot-container">
-        <div className={`ai-bot-chat ${botOpen ? "active" : ""}`}>
-          <div className="ai-bot-header">
-            <h3>Hi! I'm Guna's AI Assistant</h3>
-            <button className="ai-bot-close" onClick={() => setBotOpen(false)}>
-              <i className="uil uil-times"></i>
-            </button>
-          </div>
-          <div className="ai-bot-messages" ref={messagesEndRef}>
-            {botMessages.map((msg, idx) => (
-              <div key={idx} className={`ai-bot-message ${msg.type}`}>
-                {msg.text}
-              </div>
-            ))}
-          </div>
-          <div className="ai-bot-actions">
-            <a href="tel:+916374463809" className="ai-bot-action-btn">
-              <i className="uil uil-phone"></i>
-              Call
-            </a>
-            <a
-              href="https://wa.me/916374463809"
-              className="ai-bot-action-btn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="uil uil-whatsapp"></i>
-              WhatsApp
-            </a>
-            <a
-              href="mailto:rgunasekar1608@gmail.com"
-              className="ai-bot-action-btn"
-            >
-              <i className="uil uil-envelope"></i>
-              Email
-            </a>
-          </div>
-        </div>
-        <button
-          className="ai-bot-button"
-          onClick={() => {
-            setBotOpen(!botOpen);
-            if (!botOpen && botMessages.length === 0) {
-              const introMessages = [
-                {
-                  type: "bot",
-                  text: "Hello! 👋 I'm Guna's AI assistant. Let me tell you about him!",
-                },
-                {
-                  type: "bot",
-                  text: "Gunasekar is a Software and Frontend Developer with 2.8+ years of experience. He specializes in React.js, Next.js, TypeScript, and modern UI frameworks.",
-                },
-                {
-                  type: "bot",
-                  text: "He builds fast, responsive, and SEO-friendly web applications. He also works with AI-driven features, integrating intelligent APIs and automation workflows.",
-                },
-                {
-                  type: "bot",
-                  text: "He has developed multiple production-level websites with a focus on performance optimization, clean architecture, and scalable component design.",
-                },
-                {
-                  type: "bot",
-                  text: "Currently working at Digital Regenesys as a Software Developer. Previously interned at MavenCart where he gained hands-on experience in frontend development.",
-                },
-                {
-                  type: "bot",
-                  text: "Would you like to connect with him? Use the buttons below to call, WhatsApp, or email!",
-                },
-              ];
-              setBotMessages(introMessages);
-              setTimeout(() => {
-                messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-              }, 100);
-            }
-          }}
-        >
-          <i className="uil uil-comment-dots"></i>
-        </button>
-      </div>
+      <AIBot />
     </div>
   );
 };
