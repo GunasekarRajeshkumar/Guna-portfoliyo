@@ -25,7 +25,10 @@ const AIBot = () => {
   useEffect(() => {
     if (botMessages.length > 0 && messagesEndRef.current) {
       setTimeout(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+        messagesEndRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+        });
       }, 100);
     }
   }, [botMessages, isTyping]);
@@ -45,11 +48,17 @@ const AIBot = () => {
 
     // Greetings
     if (
-      question.match(/^(hi|hello|hey|hai|hii|helloo|hellooo|greetings|good morning|good afternoon|good evening)$/i)
+      question.match(
+        /^(hi|hello|hey|hai|hii|helloo|hellooo|greetings|good morning|good afternoon|good evening)$/i
+      )
     ) {
       return {
         text: "Hello! 👋 I'm Guna's AI assistant. How can I help you today? You can ask me about his experience, skills, projects, or anything else!",
-        suggestions: ["Tell me about Guna", "What are his skills?", "Show me his projects"],
+        suggestions: [
+          "Tell me about Guna",
+          "What are his skills?",
+          "Show me his projects",
+        ],
       };
     }
 
@@ -63,7 +72,11 @@ const AIBot = () => {
     ) {
       return {
         text: "Gunasekar is a Software and Frontend Developer with 2.8+ years of experience. He specializes in React.js, Next.js, TypeScript, and modern UI frameworks. He builds fast, responsive, and SEO-friendly web applications with AI-powered features. He currently works at Digital Regenesys as a Software Developer.",
-        suggestions: ["What are his skills?", "Show me his experience", "What projects has he done?"],
+        suggestions: [
+          "What are his skills?",
+          "Show me his experience",
+          "What projects has he done?",
+        ],
       };
     }
 
@@ -78,7 +91,11 @@ const AIBot = () => {
     ) {
       return {
         text: "Gunasekar has 2.8+ years of experience:\n\n🏢 **Digital Regenesys** (2023 - Present)\nSoftware Developer - Specializes in React.js, Next.js, TypeScript, and modern UI/UX. Works with AI tools for productivity and builds high-performance, SEO-optimized web applications.\n\n🏢 **MavenCart** (2022 - 2023)\nSoftware Developer Intern - Gained hands-on experience in frontend development, HTML, CSS, JavaScript, React.js fundamentals, and component-based architecture.",
-        suggestions: ["What are his skills?", "Show me his projects", "Where can I contact him?"],
+        suggestions: [
+          "What are his skills?",
+          "Show me his projects",
+          "Where can I contact him?",
+        ],
       };
     }
 
@@ -93,7 +110,11 @@ const AIBot = () => {
     ) {
       return {
         text: "Gunasekar's core skills include:\n\n**Frontend:** React.js, Next.js, Angular, TypeScript, JavaScript (ES6+), HTML5, CSS3\n**Styling:** Tailwind CSS, Material UI, Bootstrap\n**Backend:** Python, REST API Integration\n**Tools:** Git & GitHub, NPM/Yarn, Postman, Netlify\n**AI & Tools:** Generative AI (OpenAI/ChatGPT API), AI Chat UI Design, Prompt Engineering, Cursor, GitHub Copilot, V0\n**CMS:** Strapi (Headless CMS)\n**Database:** Firebase, PostGraph\n\nHe focuses on performance optimization, clean architecture, and scalable component design.",
-        suggestions: ["Show me his projects", "What's his experience?", "GitHub profile"],
+        suggestions: [
+          "Show me his projects",
+          "What's his experience?",
+          "GitHub profile",
+        ],
       };
     }
 
@@ -108,7 +129,11 @@ const AIBot = () => {
     ) {
       return {
         text: "Gunasekar has developed multiple production-level projects:\n\n🌐 **Live Projects:**\n• MagLife Water - maglifewater.com\n• Jaisho - jaisho.netlify.app\n• AI Chat Application - gu-gu-ai-chat.netlify.app\n• Juspay Dashboard - juspay-dashboard-guna.netlify.app\n\n💻 **GitHub Projects:**\n• Gym Web Application\n• Movie App\n• TN Tourism Website\n• Image Search Engine\n• XO Game\n• Expense Tracker\n• Baby Car Website\n\nCheck the Work section to see all his projects!",
-        suggestions: ["GitHub profile", "What technologies did he use?", "Contact information"],
+        suggestions: [
+          "GitHub profile",
+          "What technologies did he use?",
+          "Contact information",
+        ],
       };
     }
 
@@ -123,16 +148,28 @@ const AIBot = () => {
     ) {
       return {
         text: "🔗 **GitHub Profile:**\nhttps://github.com/GunasekarRajeshkumar\n\nYou can find all his code repositories, projects, and contributions there!",
-        suggestions: ["Show me his projects", "What are his skills?", "LinkedIn profile"],
+        suggestions: [
+          "Show me his projects",
+          "What are his skills?",
+          "LinkedIn profile",
+        ],
         link: "https://github.com/GunasekarRajeshkumar",
       };
     }
 
     // LinkedIn
-    if (question.includes("linkedin") || question.includes("linked in") || question === "linkedin") {
+    if (
+      question.includes("linkedin") ||
+      question.includes("linked in") ||
+      question === "linkedin"
+    ) {
       return {
         text: "🔗 **LinkedIn Profile:**\nhttps://www.linkedin.com/in/guna-sekar-008264290/\n\nConnect with him on LinkedIn!",
-        suggestions: ["GitHub profile", "Contact information", "Show me his experience"],
+        suggestions: [
+          "GitHub profile",
+          "Contact information",
+          "Show me his experience",
+        ],
         link: "https://www.linkedin.com/in/guna-sekar-008264290/",
       };
     }
@@ -149,7 +186,11 @@ const AIBot = () => {
     ) {
       return {
         text: "📧 **Email:** rgunasekar1608@gmail.com\n📱 **Phone:** (+91) 6374463809\n📍 **Location:** Madurai, Tamil Nadu\n\nYou can also reach him via:\n• WhatsApp: +91 6374463809\n• LinkedIn: https://www.linkedin.com/in/guna-sekar-008264290/\n• GitHub: https://github.com/GunasekarRajeshkumar",
-        suggestions: ["Show me his projects", "What's his experience?", "GitHub profile"],
+        suggestions: [
+          "Show me his projects",
+          "What's his experience?",
+          "GitHub profile",
+        ],
       };
     }
 
@@ -164,7 +205,11 @@ const AIBot = () => {
     ) {
       return {
         text: "🎓 **Education:**\nBachelor of Engineering\n\nCheck the Qualification section for more details about his educational background!",
-        suggestions: ["What's his experience?", "What are his skills?", "Show me his projects"],
+        suggestions: [
+          "What's his experience?",
+          "What are his skills?",
+          "Show me his projects",
+        ],
       };
     }
 
@@ -179,15 +224,27 @@ const AIBot = () => {
     ) {
       return {
         text: "🤖 **AI & Tools:**\nYes! Gunasekar works extensively with AI-driven features:\n\n• Generative AI (OpenAI/ChatGPT API)\n• AI Chat UI & Voice Assistant Design\n• Prompt Engineering\n• AI-powered code optimization\n• Intelligent automation workflows\n• AI tools: Cursor, GitHub Copilot, V0\n\nHe integrates AI to enhance productivity and create smarter interfaces!",
-        suggestions: ["Show me his projects", "What are his skills?", "GitHub profile"],
+        suggestions: [
+          "Show me his projects",
+          "What are his skills?",
+          "GitHub profile",
+        ],
       };
     }
 
     // Resume
-    if (question.includes("resume") || question.includes("cv") || question.includes("download")) {
+    if (
+      question.includes("resume") ||
+      question.includes("cv") ||
+      question.includes("download")
+    ) {
       return {
         text: "📄 **Resume:**\nYou can download Guna's resume from:\nhttps://drive.google.com/file/d/1e00E22eEnqTzX30jjRWTsK1v517t-LAG/view?usp=sharing",
-        suggestions: ["Contact information", "Show me his experience", "What are his skills?"],
+        suggestions: [
+          "Contact information",
+          "Show me his experience",
+          "What are his skills?",
+        ],
         link: "https://drive.google.com/file/d/1e00E22eEnqTzX30jjRWTsK1v517t-LAG/view?usp=sharing",
       };
     }
@@ -234,7 +291,9 @@ const AIBot = () => {
 
     const userMessage = {
       type: "user",
-      text: quickValue ? quickOptions.find((opt) => opt.value === quickValue)?.label : messageText,
+      text: quickValue
+        ? quickOptions.find((opt) => opt.value === quickValue)?.label
+        : messageText,
     };
 
     setBotMessages((prev) => [...prev, userMessage]);
@@ -256,7 +315,10 @@ const AIBot = () => {
       setBotMessages((prev) => [...prev, botMessage]);
       // Auto-scroll after message is added
       setTimeout(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+        messagesEndRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+        });
       }, 100);
     }, 1000);
   };
@@ -273,25 +335,25 @@ const AIBot = () => {
   // Format message text - convert markdown to HTML
   const formatMessage = (text) => {
     if (!text) return "";
-    
+
     // Escape HTML first
     let formatted = text
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
-    
+
     // Convert **text** to <strong>text</strong>
     formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-    
+
     // Convert *text* to <em>text</em> (only if not already bold)
     formatted = formatted.replace(/(?<!\*)\*([^*]+?)\*(?!\*)/g, "<em>$1</em>");
-    
+
     // Convert line breaks
     formatted = formatted.replace(/\n/g, "<br />");
-    
+
     // Convert bullet points (• or -)
     formatted = formatted.replace(/^[•\-]\s+(.+)$/gm, "• $1");
-    
+
     return formatted;
   };
 
@@ -332,7 +394,7 @@ const AIBot = () => {
         <div className="ai-bot-messages" ref={messagesEndRef}>
           {botMessages.map((msg, idx) => (
             <div key={idx} className={`ai-bot-message ${msg.type}`}>
-              <div 
+              <div
                 className="ai-bot-message-text"
                 dangerouslySetInnerHTML={{ __html: formatMessage(msg.text) }}
               />
@@ -451,4 +513,3 @@ const AIBot = () => {
 };
 
 export default AIBot;
-
