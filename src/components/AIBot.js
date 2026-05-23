@@ -71,7 +71,7 @@ const AIBot = () => {
       question === "about"
     ) {
       return {
-        text: "Gunasekar is a Software and Frontend Developer with 2.8+ years of experience. He specializes in React.js, Next.js, TypeScript, and modern UI frameworks. He builds fast, responsive, and SEO-friendly web applications with AI-powered features. He currently works at Digital Regenesys as a Software Developer.",
+        text: "Gunasekar is a Software Developer with nearly 3 years of experience as a Frontend and Full Stack Developer. He specializes in React.js, Next.js, TypeScript, and JavaScript on the frontend, with backend expertise in Node.js and Express.js. He builds high-performance, scalable, SEO-friendly web applications and AI-powered experiences. He currently works at Digital Regenesys as a Software Developer.",
         suggestions: [
           "What are his skills?",
           "Show me his experience",
@@ -90,7 +90,7 @@ const AIBot = () => {
       question === "experience"
     ) {
       return {
-        text: "Gunasekar has 2.8+ years of experience:\n\n🏢 **Digital Regenesys** (2023 - Present)\nSoftware Developer - Specializes in React.js, Next.js, TypeScript, and modern UI/UX. Works with AI tools for productivity and builds high-performance, SEO-optimized web applications.\n\n🏢 **MavenCart** (2022 - 2023)\nSoftware Developer Intern - Gained hands-on experience in frontend development, HTML, CSS, JavaScript, React.js fundamentals, and component-based architecture.",
+        text: "Gunasekar has nearly 3 years of experience:\n\n🏢 **Digital Regenesys** (2023 - Present)\nSoftware Developer - Builds production-grade frontend and full stack applications using React.js, Next.js, TypeScript, Node.js, and Express.js. Develops backend APIs, integrates AI-driven features, and delivers high-performance, SEO-optimized web applications.\n\n🏢 **MavenCart** (2022 - 2023)\nSoftware Developer Intern - Gained hands-on experience in frontend development, HTML, CSS, JavaScript, React.js fundamentals, and component-based architecture.",
         suggestions: [
           "What are his skills?",
           "Show me his projects",
@@ -109,7 +109,7 @@ const AIBot = () => {
       question === "skills"
     ) {
       return {
-        text: "Gunasekar's core skills include:\n\n**Frontend:** React.js, Next.js, Angular, TypeScript, JavaScript (ES6+), HTML5, CSS3\n**Styling:** Tailwind CSS, Material UI, Bootstrap\n**Backend:** Python, REST API Integration\n**Tools:** Git & GitHub, NPM/Yarn, Postman, Netlify\n**AI & Tools:** Generative AI (OpenAI/ChatGPT API), AI Chat UI Design, Prompt Engineering, Cursor, GitHub Copilot, V0\n**CMS:** Strapi (Headless CMS)\n**Database:** Firebase, PostGraph\n\nHe focuses on performance optimization, clean architecture, and scalable component design.",
+        text: "Gunasekar's core skills include:\n\n**Frontend:** React.js, Next.js, TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Material UI, Bootstrap\n**Backend & Full Stack:** Node.js, Express.js, REST APIs, GraphQL, MongoDB, Firebase, Strapi CMS, Authentication\n**AI:** AI Integration, LLM APIs, AI Agents & Automation, Prompt Engineering, Generative AI (OpenAI API)\n**Tools:** Git & GitHub, GitLab, CI/CD, Agile, Postman, Netlify, Vercel, Cursor, GitHub Copilot\n\nHe focuses on performance optimization, SEO, clean architecture, and scalable component design.",
         suggestions: [
           "Show me his projects",
           "What's his experience?",
@@ -128,7 +128,7 @@ const AIBot = () => {
       question === "projects"
     ) {
       return {
-        text: "Gunasekar has developed multiple production-level projects:\n\n🌐 **Live Projects:**\n• MagLife Water - maglifewater.com\n• Jaisho - jaisho.netlify.app\n• AI Chat Application - gu-gu-ai-chat.netlify.app\n• Juspay Dashboard - juspay-dashboard-guna.netlify.app\n\n💻 **GitHub Projects:**\n• Gym Web Application\n• Movie App\n• TN Tourism Website\n• Image Search Engine\n• XO Game\n• Expense Tracker\n• Baby Car Website\n\nCheck the Work section to see all his projects!",
+        text: "Gunasekar has developed multiple production-level projects:\n\n⭐ **Featured Projects:**\n• FridgeChef AI - AI-powered recipe assistant (fridge-chef-ai-chi.vercel.app)\n• AI Chat Application - conversational AI interface\n• Juspay Analytics Dashboard - pixel-perfect dashboard\n• MagLife Water - SEO-optimized product website\n• Jaisho - responsive web application\n\n💻 **GitHub Projects:**\n• Gym Web Application\n• Movie App\n• TN Tourism Website\n• Image Search Engine\n• XO Game\n• Expense Tracker\n• Baby Car Website\n\nCheck the Featured Projects section to see his best work!",
         suggestions: [
           "GitHub profile",
           "What technologies did he use?",
@@ -239,13 +239,13 @@ const AIBot = () => {
       question.includes("download")
     ) {
       return {
-        text: "📄 **Resume:**\nYou can download Guna's resume from:\nhttps://drive.google.com/file/d/1e00E22eEnqTzX30jjRWTsK1v517t-LAG/view?usp=sharing",
+        text: "📄 **Resume:**\nYou can download Guna's resume from:\nhttps://drive.google.com/file/d/1ko5etRBO5Y9C-r8rRpu0aRWI8d-JqYvU/view?usp=sharing",
         suggestions: [
           "Contact information",
           "Show me his experience",
           "What are his skills?",
         ],
-        link: "https://drive.google.com/file/d/1e00E22eEnqTzX30jjRWTsK1v517t-LAG/view?usp=sharing",
+        link: "https://drive.google.com/file/d/1ko5etRBO5Y9C-r8rRpu0aRWI8d-JqYvU/view?usp=sharing",
       };
     }
 
