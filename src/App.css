@@ -534,11 +534,7 @@ img:hover {
   }
 }
 
-@media screen and (max-width: 575px) {
-  .home__floating-card {
-    display: none;
-  }
-}
+/* Floating cards remain visible on all viewports — sized down for mobile below */
 
 @keyframes floatSlow {
   0%,
@@ -5484,10 +5480,6 @@ svg {
     top: auto !important;
   }
 
-  .home__floating-card {
-    display: none !important;
-  }
-
   .home__container {
     grid-template-columns: 1fr !important;
     gap: 2.5rem !important;
@@ -6028,6 +6020,77 @@ svg {
 @media screen and (max-width: 767px) {
   .home__blob-img {
     width: 482px;
+  }
+}
+
+/*==================== MOBILE FLOATING CARDS ====================*/
+@media screen and (max-width: 767px) {
+  .home__floating-card {
+    padding: 0.4rem 0.65rem !important;
+    font-size: 0.7rem !important;
+    gap: 0.35rem !important;
+    border-radius: 11px !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+  }
+
+  .home__floating-card i {
+    font-size: 0.95rem !important;
+  }
+
+  /* Tighter positions so cards stay inside the image area on mobile */
+  .home__floating-card--1 {
+    top: 2% !important;
+    left: -4% !important;
+  }
+  .home__floating-card--2 {
+    top: 10% !important;
+    right: -4% !important;
+  }
+  .home__floating-card--3 {
+    top: 48% !important;
+    left: -6% !important;
+  }
+  .home__floating-card--4 {
+    bottom: 18% !important;
+    right: -3% !important;
+  }
+  .home__floating-card--5 {
+    bottom: 4% !important;
+    left: 14% !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home__floating-card {
+    padding: 0.32rem 0.55rem !important;
+    font-size: 0.62rem !important;
+    gap: 0.3rem !important;
+    border-radius: 9px !important;
+  }
+
+  .home__floating-card i {
+    font-size: 0.8rem !important;
+  }
+
+  .home__floating-card--1 {
+    top: 0 !important;
+    left: -2% !important;
+  }
+  .home__floating-card--2 {
+    top: 8% !important;
+    right: -2% !important;
+  }
+  .home__floating-card--3 {
+    top: 50% !important;
+    left: -4% !important;
+  }
+  .home__floating-card--4 {
+    bottom: 18% !important;
+    right: -1% !important;
+  }
+  .home__floating-card--5 {
+    bottom: 2% !important;
+    left: 18% !important;
   }
 }
 

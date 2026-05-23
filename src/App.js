@@ -722,7 +722,7 @@ const App = () => {
               </div>
               <div className="home__buttons">
                 <a
-                  href="https://drive.google.com/file/d/1ko5etRBO5Y9C-r8rRpu0aRWI8d-JqYvU/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1Gr91YjP5ItqHOLL4x2Jn82mANz6BN7B7/view?usp=sharing"
                   className="button"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -1274,7 +1274,7 @@ const App = () => {
                 </li>
                 <li>
                   <a
-                    href="https://drive.google.com/file/d/1ko5etRBO5Y9C-r8rRpu0aRWI8d-JqYvU/view?usp=sharing"
+                    href="https://drive.google.com/file/d/1Gr91YjP5ItqHOLL4x2Jn82mANz6BN7B7/view?usp=sharing"
                     className="footer__link"
                     target="_blank"
                     rel="noopener noreferrer"
