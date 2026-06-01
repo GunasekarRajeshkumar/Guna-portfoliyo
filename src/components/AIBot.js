@@ -239,13 +239,13 @@ const AIBot = () => {
       question.includes("download")
     ) {
       return {
-        text: "📄 **Resume:**\nYou can download Guna's resume from:\nhttps://drive.google.com/file/d/1Gr91YjP5ItqHOLL4x2Jn82mANz6BN7B7/view?usp=sharing",
+        text: "📄 **Resume:**\nYou can download Guna's resume from:\nhttps://drive.google.com/file/d/1ewlFrHWavlB2SNpC8qg1Jo8Za0wSFeHe/view?usp=sharing",
         suggestions: [
           "Contact information",
           "Show me his experience",
           "What are his skills?",
         ],
-        link: "https://drive.google.com/file/d/1Gr91YjP5ItqHOLL4x2Jn82mANz6BN7B7/view?usp=sharing",
+        link: "https://drive.google.com/file/d/1ewlFrHWavlB2SNpC8qg1Jo8Za0wSFeHe/view?usp=sharing",
       };
     }
 
